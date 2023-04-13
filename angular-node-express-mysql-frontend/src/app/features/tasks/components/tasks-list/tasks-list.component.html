@@ -1,0 +1,24 @@
+<ng-container *ngIf="tasks?.length; else emptyList">
+  <div class="card mb-2" *ngFor="let task of tasks">
+    <div class="card-body" [ngClass]="{'done': task.done}">
+      <div class="row">
+        <div class="col-2 text-align-center">
+          <p class="small">{{task.createdAt | date: 'HH:mm:ss dd.MM.yyyy'}}</p>
+        </div>
+        <div class="col-8">
+          <p class="card-text">{{task.description}}</p>
+        </div>
+        <div class="col-2 d-flex justify-content-end">
+          <app-button buttonStyles="btn-outline-success p-1 border-0 lh-1" iconName="check" (click)="markTaskAsDone(task)"></app-button>
+          <app-button buttonStyles="btn-outline-dark p-1 border-0 lh-1" iconName="pencil" (click)="goToEditTaskPage(task.id)"></app-button>
+          <app-button buttonStyles="btn-outline-danger p-1 border-0 lh-1" iconName="trash-can" (click)="deleteBtnHandler(task.id)"></app-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+<ng-template #emptyList>
+  <div class="bg-white p-2">
+    <span>Your tasks list is empty.</span>
+  </div>
+</ng-template>

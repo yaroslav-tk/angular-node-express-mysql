@@ -1,0 +1,32 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.page-main {
+  display: flex;
+  flex: 1;
+}
+
+.page-nav {
+  width: 180px;
+}
+
+.page-content {
+  flex: 1;
+}
+
+.page-nav, .page-content {
+  padding: 0.5rem;
+}
+
+.login-container {
+  width: 585px;
+  height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

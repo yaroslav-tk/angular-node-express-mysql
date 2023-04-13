@@ -1,0 +1,22 @@
+<div class="wrapper">
+  <app-header [userName]="userName$ | async"></app-header>
+
+  <main class="page-main">
+
+    <ng-container *ngIf="isAuth$ | async; else login">
+      <div class="page-nav bg-light">
+        <app-nav></app-nav>
+      </div>
+      <div class="page-content">
+        <router-outlet></router-outlet>
+      </div>
+    </ng-container>
+
+    <ng-template #login>
+        <div class="login-container">
+          <router-outlet></router-outlet>
+        </div>
+    </ng-template>
+
+  </main>
+</div>

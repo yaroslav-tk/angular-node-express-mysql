@@ -1,0 +1,17 @@
+<div class="me-3">
+  <div class="row mb-2">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea name="description"
+                  class="form-control"
+                  id="description"
+                  rows="4"
+                  cols="5"
+                  formControlName="description">
+        </textarea>
+      </div>
+      <app-button buttonStyles="btn-success" [buttonText]="mode ==='add' ? 'Add' : 'Save'"></app-button>
+    </form>
+  </div>
+</div>

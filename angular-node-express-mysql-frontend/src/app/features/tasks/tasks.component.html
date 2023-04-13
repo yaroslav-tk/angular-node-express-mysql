@@ -1,0 +1,10 @@
+<!-- <app-tabs [tabs]="tabs"></app-tabs> -->
+<div class="tasks-container">
+  <div class="tasks-actions">
+    <app-button buttonText="Add" buttonStyles="btn-success" iconName="plus" (click)="goToAddTaskPage()"></app-button>
+  </div>
+  <app-tasks-list [tasks]="tasks$ | async"></app-tasks-list>
+</div>
+
+
+

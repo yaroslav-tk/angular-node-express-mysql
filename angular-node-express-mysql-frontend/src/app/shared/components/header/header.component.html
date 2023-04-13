@@ -1,0 +1,19 @@
+<header class="p-2 d-flex justify-content-between align-items-center bg-dark text-white">
+  <a routerLink="/">Company name</a>
+  <div *ngIf="isAuth$ | async">
+      {{userName}}
+      <app-button
+        [buttonText]="'Logout'"
+        [buttonStyles]="'btn-light'"
+        (click)="logout()"
+      ></app-button>
+  </div>
+  <div *ngIf="!(isAuth$ | async)">
+      <app-button
+        [buttonText]="'Login'"
+        [buttonStyles]="'btn-light'"
+        (click)="goToLoginPage()"
+      ></app-button>
+  </div>
+</header>
+
