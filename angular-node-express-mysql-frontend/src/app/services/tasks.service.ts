@@ -1,17 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Task } from 'src/app/models/task.model';
-import { Observable } from 'rxjs';
-import { Router } from '@angular/router';
+import { Observable, map } from 'rxjs';
 
 
 @Injectable()
 export class TasksService {
 
-  constructor(
-    private http: HttpClient,
-    private router: Router
-  ) { }
+  constructor(private http: HttpClient) { }
 
   getUserTasks(): Observable<Task[]> {
     return this.http.get<Task[]>('/api/tasks');
@@ -21,14 +17,12 @@ export class TasksService {
     return this.http.get<Task>(`/api/tasks/${id}`)
   }
 
-  createTask(task: Task): void {
-    this.http.post<Task>('/api/tasks/add', task)
-      .subscribe(() => this.router.navigate(['/tasks']))
+  createTask(task: Task): Observable<Task> {
+    return this.http.post<Task>('/api/tasks/add', task);
   }
 
-  editTask(task: Task): void {
-    this.http.put<Task>(`/api/tasks/edit/${task.id}`, task)
-      .subscribe(() => this.router.navigate(['/tasks']))
+  editTask(task: Task): Observable<Task> {
+    return this.http.put<Task>(`/api/tasks/edit/${task.id}`, task);
   }
 
   markTaskAsDone(task: Task) {
@@ -36,8 +30,7 @@ export class TasksService {
       .subscribe();
   }
 
-  deleteTask(id: string): void {
-    this.http.delete(`/api/tasks/${id}`)
-      .subscribe()
+  deleteTask(id: string) {
+    return this.http.delete(`/api/tasks/${id}`);
   }
 }
