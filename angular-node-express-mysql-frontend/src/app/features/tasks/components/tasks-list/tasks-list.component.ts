@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
 import { Task } from 'src/app/models/task.model';
 import { TasksService } from 'src/app/services/tasks.service';
+import { TasksStateFacade } from 'src/app/store/tasks/tasks.facade';
 
 @Component({
   selector: 'app-tasks-list',
@@ -13,6 +13,7 @@ export class TasksListComponent {
   @Input() tasks: Task[] | null | undefined = [];
 
   constructor(
+    private tasksStateFacade: TasksStateFacade,
     private tasksService: TasksService,
     private router: Router,
     private route: ActivatedRoute
@@ -27,9 +28,12 @@ export class TasksListComponent {
     this.router.navigate([`edit/${id}`], { relativeTo: this.route })
   }
 
-  async deleteBtnHandler(id: string) {
-    await this.tasksService.deleteTask(id);
-    this.tasks = this.tasks?.filter(task => task.id !== id)
+  deleteBtnHandler(id: string) {
+    this.tasksStateFacade.deleteTask(id);
+  }
+
+  myTrackingFn(index: number, task: Task): string {
+    return task.id;
   }
 
 }

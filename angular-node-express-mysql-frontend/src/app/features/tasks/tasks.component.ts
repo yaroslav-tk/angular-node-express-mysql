@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Task, TasksTabs } from 'src/app/models/task.model';
-import { TasksService } from '../../services/tasks.service';
 import { Observable } from 'rxjs';
+import { TasksStateFacade } from 'src/app/store/tasks/tasks.facade';
 
 @Component({
   selector: 'app-tasks',
@@ -10,17 +10,21 @@ import { Observable } from 'rxjs';
   styleUrls: ['./tasks.component.scss']
 })
 export class TasksComponent implements OnInit {
-  tasks$!: Observable<Task[]>;
+  tasks$: Observable<Task[]>;
+  isTasksLoading$: Observable<boolean>;
   tabs = [TasksTabs.toDo, TasksTabs.done]
 
   constructor(
-    private tasksService: TasksService,
+    private tasksStateFacage: TasksStateFacade,
     private router: Router,
     private route: ActivatedRoute
-  ) {}
+  ) {
+    this.tasks$ = this.tasksStateFacage.userTasks$;
+    this.isTasksLoading$ = this.tasksStateFacage.isUserTasksLoading$;
+  }
 
   ngOnInit(): void {
-    this.tasks$ = this.tasksService.getUserTasks();
+    this.tasksStateFacage.getUserTasks();
   }
 
   goToAddTaskPage() {

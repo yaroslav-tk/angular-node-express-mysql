@@ -3,7 +3,16 @@
   <div class="tasks-actions">
     <app-button buttonText="Add" buttonStyles="btn-success" iconName="plus" (click)="goToAddTaskPage()"></app-button>
   </div>
-  <app-tasks-list [tasks]="tasks$ | async"></app-tasks-list>
+
+  <ng-container *ngIf="isTasksLoading$ | async; else showTasksList">
+    <div class="bg-white p-2">
+      <span>Loading...</span>
+    </div>
+  </ng-container>
+
+  <ng-template #showTasksList>
+    <app-tasks-list [tasks]="tasks$ | async"></app-tasks-list>
+  </ng-template>
 </div>
 
 

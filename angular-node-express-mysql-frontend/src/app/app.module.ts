@@ -9,6 +9,10 @@ import { TasksModule } from './features/tasks/tasks.module';
 
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
+import { StoreModule } from '@ngrx/store';
+import { reducers, effects } from './store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -21,7 +25,10 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     AuthModule,
     UserModule,
-    TasksModule
+    TasksModule,
+    StoreModule.forRoot(reducers),
+    EffectsModule.forRoot(effects),
+    StoreDevtoolsModule.instrument(),
   ],
   providers: [],
   bootstrap: [AppComponent]
