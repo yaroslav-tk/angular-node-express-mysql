@@ -63,6 +63,16 @@ export class TasksEffects {
     )
   ))
 
+  toggleDoneStatus = createEffect(() => this.actions$.pipe(
+    ofType(TasksActions.requestToggleDoneStatus),
+    switchMap(({ task }) =>
+      this.tasksService.toogleDoneStatus(task).pipe(
+        map(() => TasksActions.requestUserTasks()),
+        catchError(error => of(TasksActions.requestToggleDoneStatusFail(error.message)))
+      )
+    )
+  ))
+
   redirectToTasksPage$ = createEffect(() => this.actions$.pipe(
     ofType(
       TasksActions.requestCreateTaskSuccess,

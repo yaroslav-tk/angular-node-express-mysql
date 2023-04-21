@@ -25,9 +25,8 @@ export class TasksService {
     return this.http.put<Task>(`/api/tasks/edit/${task.id}`, task);
   }
 
-  markTaskAsDone(task: Task) {
-    this.http.put<Task>('/api/tasks/markTaskAsDone', task)
-      .subscribe();
+  toogleDoneStatus(task: Task) {
+    return this.http.put<Task>('/api/tasks/toogleDoneStatus', task);
   }
 
   deleteTask(id: string) {

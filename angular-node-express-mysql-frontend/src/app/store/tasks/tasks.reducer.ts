@@ -76,6 +76,11 @@ export const TasksReducer = createReducer(
   on(TasksActions.requestDeleteTaskFail, (state, { error }) => ({
     ...state,
     errorMessage: error
+  })),
+
+  on(TasksActions.requestToggleDoneStatusFail, (state, { error }) => ({
+    ...state,
+    errorMessage: error
   }))
 );
 

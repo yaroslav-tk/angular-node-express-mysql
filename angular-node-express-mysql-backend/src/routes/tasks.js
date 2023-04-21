@@ -8,7 +8,7 @@ router.get('/:id', tasksController.getSingleTask);
 
 router.post('/add', tasksController.addTask);
 router.put('/edit/:id', tasksController.editTask);
-router.put('/markTaskAsDone', tasksController.markTaskAsDone)
+router.put('/toogleDoneStatus', tasksController.toogleDoneStatus)
 
 router.delete('/:id', tasksController.deleteTask)
 

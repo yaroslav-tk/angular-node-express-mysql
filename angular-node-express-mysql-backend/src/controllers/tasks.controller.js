@@ -72,7 +72,7 @@ const editTask = async (request, response) => {
   }
 }
 
-const markTaskAsDone = async (request, response) => {
+const toogleDoneStatus = async (request, response) => {
   const task = request.body;
 
   try {
@@ -102,6 +102,6 @@ module.exports = {
   getSingleTask,
   addTask,
   editTask,
-  markTaskAsDone,
+  toogleDoneStatus,
   deleteTask
 }
