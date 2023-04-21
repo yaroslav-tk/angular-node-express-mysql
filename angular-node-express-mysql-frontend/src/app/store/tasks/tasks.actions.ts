@@ -21,6 +21,10 @@ export enum TasksActions {
   requestDeleteTask = '[Tasks]  request Delete Task',
   requestDeleteTaskSuccess = '[Tasks]  request Delete Task Success',
   requestDeleteTaskFail = '[Tasks]  request Delete Task Fail',
+
+  requestToggleDoneStatus = '[Tasks]  request Toggle Done Status',
+  requestToggleDoneStatusSuccess = '[Tasks]  request Toggle Done Status Success',
+  requestToggleDoneStatusFail = '[Tasks]  request Toggle Done Status Fail',
 }
 
 export const requestUserTasks = createAction(
@@ -96,3 +100,17 @@ export const requestDeleteTaskFail = createAction(
   TasksActions.requestDeleteTaskFail,
   props<{ error: string }>()
 );
+
+export const requestToggleDoneStatus = createAction(
+  TasksActions.requestToggleDoneStatus,
+  props<{ task: Task }>()
+);
+
+export const requestToggleDoneStatusSuccess = createAction(
+  TasksActions.requestToggleDoneStatusSuccess
+)
+
+export const requestToggleDoneStatusFail = createAction(
+  TasksActions.requestToggleDoneStatusFail,
+  props<{ error: string }>()
+)

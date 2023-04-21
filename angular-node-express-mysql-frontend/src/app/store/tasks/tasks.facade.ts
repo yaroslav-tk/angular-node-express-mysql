@@ -37,4 +37,8 @@ export class TasksStateFacade {
   deleteTask(id: string): void {
     this.store.dispatch(TasksAction.requestDeleteTask({ id }))
   }
+
+  toogleDoneStatus(task: Task): void {
+    this.store.dispatch(TasksAction.requestToggleDoneStatus({ task }))
+  }
 }

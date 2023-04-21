@@ -9,7 +9,7 @@
           <p class="card-text">{{task.description}}</p>
         </div>
         <div class="col-2 d-flex justify-content-end">
-          <app-button buttonStyles="btn-outline-success p-1 border-0 lh-1" iconName="check" (click)="markTaskAsDone(task)"></app-button>
+          <app-button buttonStyles="btn-outline-success p-1 border-0 lh-1" iconName="check" (click)="toogleDoneStatus(task)"></app-button>
           <app-button buttonStyles="btn-outline-dark p-1 border-0 lh-1" iconName="pencil" (click)="goToEditTaskPage(task.id)"></app-button>
           <app-button buttonStyles="btn-outline-danger p-1 border-0 lh-1" iconName="trash-can" (click)="deleteBtnHandler(task.id)"></app-button>
         </div>

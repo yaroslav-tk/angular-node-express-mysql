@@ -14,14 +14,15 @@ export class TasksListComponent {
 
   constructor(
     private tasksStateFacade: TasksStateFacade,
-    private tasksService: TasksService,
+    // private tasksService: TasksService,
     private router: Router,
     private route: ActivatedRoute
   ) {}
 
-  markTaskAsDone(task: Task) {
-    this.tasksService.markTaskAsDone(task);
-    this.tasks?.forEach(t => t.id === task.id ? t.done = !task.done : t)
+  toogleDoneStatus(task: Task) {
+    this.tasksStateFacade.toogleDoneStatus(task);
+    // this.tasksService.toogleDoneStatus(task);
+    // this.tasks?.forEach(t => t.id === task.id ? t.done = !task.done : t)
   }
 
   goToEditTaskPage(id: string) {
