@@ -19,7 +19,7 @@ const getListOfUserTasks = async (request, response) => {
   const { results } = await userService.findUserByEmail(email);
   const userId = results[0].id;
   try {
-    const { results } = await db.query('SELECT * FROM tasks WHERE userId=? ORDER BY createdAt DESC', [userId]);
+    const { results } = await db.query('SELECT * FROM tasks WHERE userId=? ORDER BY done, createdAt DESC', [userId]);
     return response.json(results)
   } catch (error) {
     console.error(error);

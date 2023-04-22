@@ -1,7 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { Task } from 'src/app/models/task.model';
-import { TasksService } from 'src/app/services/tasks.service';
 import { TasksStateFacade } from 'src/app/store/tasks/tasks.facade';
 
 @Component({
@@ -9,28 +9,25 @@ import { TasksStateFacade } from 'src/app/store/tasks/tasks.facade';
   templateUrl: './tasks-list.component.html',
   styleUrls: ['./tasks-list.component.scss']
 })
-export class TasksListComponent {
-  @Input() tasks: Task[] | null | undefined = [];
+export class TasksListComponent implements OnInit {
+  tasks$: Observable<Task[]>;
+  isTasksLoading$: Observable<boolean>;
 
   constructor(
-    private tasksStateFacade: TasksStateFacade,
-    // private tasksService: TasksService,
+    private tasksStateFacage: TasksStateFacade,
     private router: Router,
     private route: ActivatedRoute
-  ) {}
-
-  toogleDoneStatus(task: Task) {
-    this.tasksStateFacade.toogleDoneStatus(task);
-    // this.tasksService.toogleDoneStatus(task);
-    // this.tasks?.forEach(t => t.id === task.id ? t.done = !task.done : t)
+  ) {
+    this.tasks$ = this.tasksStateFacage.userTasks$;
+    this.isTasksLoading$ = this.tasksStateFacage.isUserTasksLoading$;
   }
 
-  goToEditTaskPage(id: string) {
-    this.router.navigate([`edit/${id}`], { relativeTo: this.route })
+  ngOnInit(): void {
+    this.tasksStateFacage.getUserTasks();
   }
 
-  deleteBtnHandler(id: string) {
-    this.tasksStateFacade.deleteTask(id);
+  goToAddTaskPage() {
+    this.router.navigate(['add'], { relativeTo: this.route })
   }
 
   myTrackingFn(index: number, task: Task): string {

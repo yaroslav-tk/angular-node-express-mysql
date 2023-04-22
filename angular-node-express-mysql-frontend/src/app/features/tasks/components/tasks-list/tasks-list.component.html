@@ -1,24 +1,20 @@
-<ng-container *ngIf="tasks?.length; else emptyList">
-  <div class="card mb-2" *ngFor="let task of tasks; trackBy: myTrackingFn">
-    <div class="card-body" [ngClass]="{'done': task.done}">
-      <div class="row">
-        <div class="col-2 text-align-center">
-          <p class="small">{{task.createdAt | date: 'HH:mm:ss dd.MM.yyyy'}}</p>
-        </div>
-        <div class="col-8">
-          <p class="card-text">{{task.description}}</p>
-        </div>
-        <div class="col-2 d-flex justify-content-end">
-          <app-button buttonStyles="btn-outline-success p-1 border-0 lh-1" iconName="check" (click)="toogleDoneStatus(task)"></app-button>
-          <app-button buttonStyles="btn-outline-dark p-1 border-0 lh-1" iconName="pencil" (click)="goToEditTaskPage(task.id)"></app-button>
-          <app-button buttonStyles="btn-outline-danger p-1 border-0 lh-1" iconName="trash-can" (click)="deleteBtnHandler(task.id)"></app-button>
-        </div>
-      </div>
-    </div>
+<div class="tasks-actions">
+  <app-button buttonText="Add" buttonStyles="btn-success" iconName="plus" (click)="goToAddTaskPage()"></app-button>
+</div>
+
+<ng-container *ngIf="isTasksLoading$ | async; else showTasksList">
+  <div class="bg-white p-2">
+    <span>Loading...</span>
   </div>
 </ng-container>
-<ng-template #emptyList>
-  <div class="bg-white p-2">
-    <span>Your tasks list is empty.</span>
-  </div>
+
+<ng-template #showTasksList>
+  <ng-container *ngIf="(tasks$ | async)?.length; else emptyList">
+    <app-task-card *ngFor="let task of tasks$ | async; trackBy: myTrackingFn" [task]="task"></app-task-card>
+  </ng-container>
+  <ng-template #emptyList>
+    <div class="bg-white p-2">
+      <span>Your tasks list is empty.</span>
+    </div>
+  </ng-template>
 </ng-template>
