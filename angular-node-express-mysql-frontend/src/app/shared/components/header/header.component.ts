@@ -1,8 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/core/auth/services/auth.service';
+import { UserStateFacade } from 'src/app/store/user/user.facade';
 
 @Component({
   selector: 'app-header',
@@ -10,16 +11,20 @@ import { AuthService } from 'src/app/core/auth/services/auth.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  @Input() userName!: string | null;
-  isAuth$!: Observable<boolean>;
+  isAuth$: Observable<boolean>;
+  userName$: Observable<string | null>;
 
   constructor(
     private authService: AuthService,
+    private userStateFacade: UserStateFacade,
     private router: Router
-  ) {}
+  ) {
+    this.isAuth$ = this.authService.isAuthorized$
+    this.userName$ = this.userStateFacade.userName$
+  }
 
   ngOnInit(): void {
-    this.isAuth$ = this.authService.isAuthorized$;
+    this.userStateFacade.loadUser()
   }
 
   goToLoginPage() {

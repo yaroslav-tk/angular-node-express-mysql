@@ -4,7 +4,7 @@ import { User } from 'src/app/models/user.model';
 import { SessionStorageService } from './session-storage.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { UserStoreService } from '../../user/services/user-store.service';
+import { UserStateFacade } from 'src/app/store/user/user.facade';
 
 
 @Injectable()
@@ -15,7 +15,7 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private sessionStorageService: SessionStorageService,
-    private userStoreService: UserStoreService,
+    private userStateFacade: UserStateFacade,
     private router: Router
   ) { }
 
@@ -35,7 +35,7 @@ export class AuthService {
         tap(({token}: any) => {
           this.sessionStorageService.setItem('token', token);
           this.isAuthorized$$.next(this.isAuthorized());
-          this.userStoreService.loadUser();
+          this.userStateFacade.loadUser();
           this.router.navigateByUrl('/')
         })
       )
