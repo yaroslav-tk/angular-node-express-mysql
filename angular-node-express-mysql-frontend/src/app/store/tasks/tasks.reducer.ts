@@ -18,7 +18,7 @@ export const initialState: TasksState = {
   errorMessage: null,
 };
 
-export const TasksReducer = createReducer(
+export const tasksReducer = createReducer(
   initialState,
 
   on(TasksActions.requestUserTasks, (state) => ({

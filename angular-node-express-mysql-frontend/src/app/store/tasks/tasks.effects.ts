@@ -4,7 +4,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
-import { TasksService } from 'src/app/services/tasks.service';
+import { TasksService } from 'src/app/features/tasks/services/tasks.service';
 import * as TasksActions from './tasks.actions';
 
 

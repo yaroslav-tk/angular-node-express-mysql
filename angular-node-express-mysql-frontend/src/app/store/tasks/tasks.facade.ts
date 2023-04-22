@@ -6,9 +6,7 @@ import * as TasksAction from "./tasks.actions";
 import * as TasksSelectors from "./tasks.selectors";
 
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class TasksStateFacade {
   userTasks$: Observable<Task[]> = this.store.pipe(select(TasksSelectors.getUserTasksSelector));
   task$: Observable<Task | null> = this.store.pipe(select(TasksSelectors.getTaskSelector));
