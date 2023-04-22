@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TaskFormComponent } from './components/task-form/task-form.component';
-import { TasksComponent } from './tasks.component';
+import { TasksListComponent } from './components/tasks-list/tasks-list.component';
 
 
 const routes: Routes = [
@@ -14,12 +14,8 @@ const routes: Routes = [
     component: TaskFormComponent
   },
   {
-    path: 'done',
-    component: TasksComponent
-  },
-  {
     path: '',
-    component: TasksComponent
+    component: TasksListComponent
   }
 ]
 

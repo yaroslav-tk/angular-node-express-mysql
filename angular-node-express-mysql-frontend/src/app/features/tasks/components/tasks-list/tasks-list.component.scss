@@ -1,14 +1,4 @@
-.card {
-  border-radius: 0;
-
-  &:hover {
-    -webkit-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.5);
-    -moz-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.5);
-    box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.5);
-  }
-
-  & .done {
-    color: rgba(0, 0, 0, 0.50);
-    background-color: rgba(0, 0, 0, 0.10);
-  }
+.tasks-actions {
+  display: flex;
+  margin-bottom: 0.5rem;
 }
