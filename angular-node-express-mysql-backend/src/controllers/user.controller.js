@@ -22,10 +22,12 @@ const login = async (request, response) => {
   try {
     const { results } = await userService.findUserByEmail(email);
     if (results.length) {
+      //find company by results[0].company_id
       const hashedPassword = results[0].password;
       const match = await bcrypt.compare(password, hashedPassword);
       if (match) {
         const user = {
+          companyName: /** company name*/'',
           name: results[0].username,
           email: results[0].email,
         };
@@ -41,6 +43,7 @@ const login = async (request, response) => {
 }
 
 const user = (request, response) => {
+  console.log(request.user);
   response.json(request.user)
 };
 

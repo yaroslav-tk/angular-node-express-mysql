@@ -9,6 +9,7 @@ import { AuthService } from 'src/app/core/auth/services/auth.service';
 })
 export class RegistrationFormComponent {
   user = {
+    companyName: '',
     name: '',
     email: '',
     password: ''

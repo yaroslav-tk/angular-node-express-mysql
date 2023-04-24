@@ -4,11 +4,13 @@ import * as UserActions from './user.actions';
 export const userFeatureKey = 'user';
 
 export interface UserState {
+  companyName: string | null,
   userName: string | null,
   errorMessage: string | null
 }
 
 export const initialState: UserState = {
+  companyName: null,
   userName: null,
   errorMessage: null
 };
@@ -18,6 +20,7 @@ export const userReducer = createReducer(
 
   on(UserActions.loadUserSuccess, (state, { user }) => ({
     ...state,
+    companyName: user.companyName,
     userName: user.name
   })),
 

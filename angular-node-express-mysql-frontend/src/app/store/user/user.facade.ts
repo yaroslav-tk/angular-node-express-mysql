@@ -7,7 +7,8 @@ import * as UserSelectors from "./user.selectors";
 
 @Injectable()
 export class UserStateFacade {
-  userName$: Observable<string | null> = this.store.pipe(select(UserSelectors.getUserSelector))
+  companyName$: Observable<string | null> = this.store.pipe(select(UserSelectors.getCompanyNameSelector))
+  userName$: Observable<string | null> = this.store.pipe(select(UserSelectors.getUserNameSelector))
 
   constructor(private store: Store) {}
 

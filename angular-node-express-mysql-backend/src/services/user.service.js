@@ -15,12 +15,17 @@ class UserService {
   }
 
   async saveUser (user) {
-    const id = uuidv4();
+    const companyId = uuidv4();
+    const userId = uuidv4();
     const hashedPassword = await hashPassword(user.password);
-
+    
+    await db.query(
+      'INSERT INTO companies (id, company_name) VALUES (?, ?)',
+      [companyId, user.companyName]
+    )
     return await db.query(
-      'INSERT INTO users (id, username, email, password) VALUE (?, ?, ?, ?)', 
-      [id, user.name, user.email, hashedPassword]
+      'INSERT INTO users (id, username, email, password, company_id) VALUE (?, ?, ?, ?, ?)', 
+      [userId, user.name, user.email, hashedPassword, companyId]
     );
   }
 }
