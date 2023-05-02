@@ -4,6 +4,7 @@ import { Observable } from "rxjs";
 
 import * as UserActions from "./user.actions";
 import * as UserSelectors from "./user.selectors";
+import { User } from "src/app/models/user.model";
 
 @Injectable()
 export class UserStateFacade {
@@ -14,5 +15,9 @@ export class UserStateFacade {
 
   loadUser(): void {
     this.store.dispatch(UserActions.loadUser())
+  }
+
+  editUser(user: User): void {
+    this.store.dispatch(UserActions.editUser({ user }))
   }
 }

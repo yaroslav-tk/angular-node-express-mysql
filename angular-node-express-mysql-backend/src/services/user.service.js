@@ -10,8 +10,16 @@ class UserService {
     } catch (error) {
       console.error(error);
       return response.status(500).json({ error: 'Something went wrong' });
+    }    
+  }
+
+  async findCompanyById (id) {
+    try {
+      return await db.query('SELECT * FROM companies WHERE id=?', [id])
+    } catch (error) {
+      console.log(error);
+      return response.status(500).json({ error: 'Something went wrong' });
     }
-    
   }
 
   async saveUser (user) {

@@ -21,15 +21,19 @@ const login = async (request, response) => {
   
   try {
     const { results } = await userService.findUserByEmail(email);
-    if (results.length) {
-      //find company by results[0].company_id
-      const hashedPassword = results[0].password;
+    const findedUser = results[0];
+
+    if (findedUser) {
+      const { results } = await userService.findCompanyById(findedUser.company_id);
+      const findedCompany = results[0];
+      const hashedPassword = findedUser.password;
       const match = await bcrypt.compare(password, hashedPassword);
+
       if (match) {
         const user = {
-          companyName: /** company name*/'',
-          name: results[0].username,
-          email: results[0].email,
+          companyName: findedCompany?.company_name,
+          name: findedUser.username,
+          email: findedUser.email,
         };
         const token = await generateToken(user);
         return response.status(200).send({user, token});
@@ -43,12 +47,18 @@ const login = async (request, response) => {
 }
 
 const user = (request, response) => {
-  console.log(request.user);
   response.json(request.user)
 };
+
+const editUser = async (request, response) => {
+  const updatedUser = request.body;
+  console.log(updatedUser);
+  return response.json(updatedUser)
+}
 
 module.exports = {
   register,
   login,
-  user
+  user,
+  editUser
 }

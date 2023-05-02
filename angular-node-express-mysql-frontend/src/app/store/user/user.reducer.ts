@@ -27,6 +27,16 @@ export const userReducer = createReducer(
   on(UserActions.loadUserFail, (state, { error }) => ({
     ...state,
     errorMessage: error
+  })),
+
+  on(UserActions.editUserSuccess, (state, { user }) => ({
+    ...state,
+    companyName: user.companyName
+  })),
+
+  on(UserActions.editUserFail, (state, { error }) => ({
+    ...state,
+    errorMessage: error
   }))
 );
 
