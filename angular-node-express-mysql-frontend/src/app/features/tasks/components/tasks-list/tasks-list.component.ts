@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Task } from 'src/app/models/task.model';
+import { Tab } from 'src/app/shared/models/tab.model';
 import { TasksStateFacade } from 'src/app/store/tasks/tasks.facade';
 
 @Component({
@@ -12,6 +13,11 @@ import { TasksStateFacade } from 'src/app/store/tasks/tasks.facade';
 export class TasksListComponent implements OnInit {
   tasks$: Observable<Task[]>;
   isTasksLoading$: Observable<boolean>;
+  tabs: Tab[] = [
+    { name: 'To Do', id: 'todo' },
+    { name: 'Done', id: 'done' }
+  ]
+  activeTab: string = 'todo'
 
   constructor(
     private tasksStateFacage: TasksStateFacade,
@@ -24,6 +30,10 @@ export class TasksListComponent implements OnInit {
 
   ngOnInit(): void {
     this.tasksStateFacage.getUserTasks();
+  }
+
+  changeTab(tabId: string) {
+    this.activeTab = tabId;
   }
 
   goToAddTaskPage() {

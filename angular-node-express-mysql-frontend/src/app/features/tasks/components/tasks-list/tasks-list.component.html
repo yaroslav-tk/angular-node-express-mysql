@@ -1,6 +1,4 @@
-<div class="tasks-actions">
-  <app-button buttonText="Add" buttonStyles="btn-success" iconName="plus" (click)="goToAddTaskPage()"></app-button>
-</div>
+<app-tabs [tabs]="tabs" [activeTab]="activeTab" (onTabChange)="changeTab($event)"></app-tabs>
 
 <ng-container *ngIf="isTasksLoading$ | async; else showTasksList">
   <div class="bg-white p-2">
@@ -10,11 +8,20 @@
 
 <ng-template #showTasksList>
   <ng-container *ngIf="(tasks$ | async)?.length; else emptyList">
-    <app-task-card *ngFor="let task of tasks$ | async; trackBy: myTrackingFn" [task]="task"></app-task-card>
+    <div *ngIf="activeTab === 'todo'">
+      <div class="tasks-actions">
+        <app-button buttonText="Add" buttonStyles="btn-success" iconName="plus" (click)="goToAddTaskPage()"></app-button>
+      </div>
+      <app-task-card *ngFor="let task of tasks$ | async; trackBy: myTrackingFn" [task]="task"></app-task-card>
+    </div>
+    <div *ngIf="activeTab === 'done'">
+      <app-task-card *ngFor="let task of tasks$ | async; trackBy: myTrackingFn" [task]="task"></app-task-card>
+    </div>
   </ng-container>
   <ng-template #emptyList>
     <div class="bg-white p-2">
       <span>Your tasks list is empty.</span>
+      <app-button buttonText="Add Task" buttonStyles="btn-success" iconName="plus" (click)="goToAddTaskPage()"></app-button>
     </div>
   </ng-template>
 </ng-template>

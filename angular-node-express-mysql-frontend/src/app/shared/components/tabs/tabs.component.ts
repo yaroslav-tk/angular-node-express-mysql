@@ -1,4 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Tab } from '../../models/tab.model';
+
 
 
 @Component({
@@ -7,5 +9,11 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./tabs.component.scss']
 })
 export class TabsComponent {
-  @Input() tabs: string[] = [];
+  @Input() tabs: Tab[] = [];
+  @Input() activeTab: string = '';
+  @Output() onTabChange = new EventEmitter<string>();
+
+  changeTab(tabId: string) {
+    this.onTabChange.emit(tabId)
+  }
 }
