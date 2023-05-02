@@ -8,6 +8,12 @@
 
 <ng-template #showTasksList>
   <ng-container *ngIf="(tasks$ | async)?.length; else emptyList">
+    <div *ngIf="activeTab === 'all'">
+      <div class="tasks-actions">
+        <app-button buttonText="Add" buttonStyles="btn-success" iconName="plus" (click)="goToAddTaskPage()"></app-button>
+      </div>
+      <app-task-card *ngFor="let task of tasks$ | async; trackBy: myTrackingFn" [task]="task"></app-task-card>
+    </div>
     <div *ngIf="activeTab === 'todo'">
       <div class="tasks-actions">
         <app-button buttonText="Add" buttonStyles="btn-success" iconName="plus" (click)="goToAddTaskPage()"></app-button>

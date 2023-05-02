@@ -38,6 +38,40 @@ export const tasksReducer = createReducer(
     errorMessage: error
   })),
 
+  on(TasksActions.requestUserToDoTasks, (state) => ({
+    ...state,
+    isUserTasksLoading: true
+  })),
+
+  on(TasksActions.requestUserToDoTasksSuccess, (state, { tasks }) => ({
+    ...state,
+    isUserTasksLoading: false,
+    userTasks: tasks
+  })),
+
+  on(TasksActions.requestUserToDoTasksFail, (state, { error }) => ({
+    ...state,
+    isUserTasksLoading: false,
+    errorMessage: error
+  })),
+
+  on(TasksActions.requestUserDoneTasks, (state) => ({
+    ...state,
+    isUserTasksLoading: true
+  })),
+
+  on(TasksActions.requestUserDoneTasksSuccess, (state, { tasks }) => ({
+    ...state,
+    isUserTasksLoading: false,
+    userTasks: tasks
+  })),
+
+  on(TasksActions.requestUserDoneTasksFail, (state, { error }) => ({
+    ...state,
+    isUserTasksLoading: false,
+    errorMessage: error
+  })),
+
   on(TasksActions.requestSingleTaskSuccess, (state, { task }) => ({
     ...state,
     task

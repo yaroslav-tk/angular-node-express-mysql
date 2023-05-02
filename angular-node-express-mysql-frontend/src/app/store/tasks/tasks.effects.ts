@@ -20,8 +20,29 @@ export class TasksEffects {
         catchError(error => of(TasksActions.requestUserTasksFail(error.message)))
       )
     )
+  ));
+
+  getUserToDoTasks$ = createEffect(() => this.actions$.pipe(
+    ofType(TasksActions.requestUserToDoTasks),
+    switchMap(() =>
+      this.tasksService.getUserTasks().pipe(
+        map(tasks => tasks.filter(task => task.done ? null : task)),
+        map(tasks => TasksActions.requestUserToDoTasksSuccess({ tasks })),
+        catchError(error => of(TasksActions.requestUserToDoTasksFail(error.message)))
+      )
     )
-  );
+  ));
+
+  getUserDoneTasks$ = createEffect(() => this.actions$.pipe(
+    ofType(TasksActions.requestUserDoneTasks),
+    switchMap(() =>
+      this.tasksService.getUserTasks().pipe(
+        map(tasks => tasks.filter(task => task.done ? task: null)),
+        map(tasks => TasksActions.requestUserDoneTasksSuccess({ tasks })),
+        catchError(error => of(TasksActions.requestUserDoneTasksFail(error.message)))
+      )
+    )
+  ));
 
   getSingleTask$ = createEffect(() => this.actions$.pipe(
     ofType(TasksActions.requestSingleTask),
@@ -31,7 +52,7 @@ export class TasksEffects {
         catchError(error => of(TasksActions.requestSingleTaskFail(error.message)))
       )
     )
-  ))
+  ));
 
   createTask$ = createEffect(() => this.actions$.pipe(
     ofType(TasksActions.requestCreateTask),
@@ -41,7 +62,7 @@ export class TasksEffects {
         catchError(error => of(TasksActions.requestCreateTaskFail(error.message)))
       )
     )
-  ))
+  ));
 
   editTask$ = createEffect(() => this.actions$.pipe(
     ofType(TasksActions.requestEditTask),
@@ -50,8 +71,8 @@ export class TasksEffects {
         map(task => TasksActions.requestEditTaskSuccess({ id: task.id })),
         catchError(error => of(TasksActions.requestEditTaskFail(error.message)))
       )
-    ))
-  );
+    )
+  ));
 
   deleteTask$ = createEffect(() => this.actions$.pipe(
     ofType(TasksActions.requestDeleteTask),
@@ -61,7 +82,7 @@ export class TasksEffects {
         catchError(error => of(TasksActions.requestDeleteTaskFail(error.message)))
       )
     )
-  ))
+  ));
 
   toggleDoneStatus = createEffect(() => this.actions$.pipe(
     ofType(TasksActions.requestToggleDoneStatus),
@@ -71,7 +92,7 @@ export class TasksEffects {
         catchError(error => of(TasksActions.requestToggleDoneStatusFail(error.message)))
       )
     )
-  ))
+  ));
 
   redirectToTasksPage$ = createEffect(() => this.actions$.pipe(
     ofType(

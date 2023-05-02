@@ -20,6 +20,14 @@ export class TasksStateFacade {
     this.store.dispatch(TasksAction.requestUserTasks())
   }
 
+  getUserToDoTasks(): void {
+    this.store.dispatch(TasksAction.requestUserToDoTasks())
+  }
+
+  getUserDoneTasks(): void {
+    this.store.dispatch(TasksAction.requestUserDoneTasks());
+  }
+
   getSingleTask(id: string) {
     this.store.dispatch(TasksAction.requestSingleTask({ id }))
   }
