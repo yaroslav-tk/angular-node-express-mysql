@@ -22,28 +22,6 @@ export class TasksEffects {
     )
   ));
 
-  getUserToDoTasks$ = createEffect(() => this.actions$.pipe(
-    ofType(TasksActions.requestUserToDoTasks),
-    switchMap(() =>
-      this.tasksService.getUserTasks().pipe(
-        map(tasks => tasks.filter(task => task.done ? null : task)),
-        map(tasks => TasksActions.requestUserToDoTasksSuccess({ tasks })),
-        catchError(error => of(TasksActions.requestUserToDoTasksFail(error.message)))
-      )
-    )
-  ));
-
-  getUserDoneTasks$ = createEffect(() => this.actions$.pipe(
-    ofType(TasksActions.requestUserDoneTasks),
-    switchMap(() =>
-      this.tasksService.getUserTasks().pipe(
-        map(tasks => tasks.filter(task => task.done ? task: null)),
-        map(tasks => TasksActions.requestUserDoneTasksSuccess({ tasks })),
-        catchError(error => of(TasksActions.requestUserDoneTasksFail(error.message)))
-      )
-    )
-  ));
-
   getSingleTask$ = createEffect(() => this.actions$.pipe(
     ofType(TasksActions.requestSingleTask),
     switchMap(({ id }) =>

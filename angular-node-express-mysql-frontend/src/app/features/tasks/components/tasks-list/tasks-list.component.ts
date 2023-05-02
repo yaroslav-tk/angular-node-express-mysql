@@ -11,7 +11,9 @@ import { TasksStateFacade } from 'src/app/store/tasks/tasks.facade';
   styleUrls: ['./tasks-list.component.scss']
 })
 export class TasksListComponent implements OnInit {
-  tasks$: Observable<Task[]>;
+  allTasks$: Observable<Task[]>;
+  todoTasks$: Observable<Task[]>;
+  doneTasks$: Observable<Task[]>;
   isTasksLoading$: Observable<boolean>;
   tabs: Tab[] = [
     { name: 'All', id: 'all' },
@@ -25,23 +27,18 @@ export class TasksListComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute
   ) {
-    this.tasks$ = this.tasksStateFacage.userTasks$;
+    this.allTasks$ = this.tasksStateFacage.userTasks$;
+    this.todoTasks$ = this.tasksStateFacage.userTodoTasks$;
+    this.doneTasks$ = this.tasksStateFacage.userDoneTasks$;
     this.isTasksLoading$ = this.tasksStateFacage.isUserTasksLoading$;
   }
 
   ngOnInit(): void {
-    this.getUserTasks();
-  }
-
-  getUserTasks() {
-    if (this.activeTab === 'all') this.tasksStateFacage.getUserTasks();
-    else if(this.activeTab === 'todo') this.tasksStateFacage.getUserToDoTasks();
-    else if(this.activeTab === 'done') this.tasksStateFacage.getUserDoneTasks();
+    this.tasksStateFacage.getUserTasks()
   }
 
   changeTab(tabId: string) {
     this.activeTab = tabId;
-    this.getUserTasks();
   }
 
   goToAddTaskPage() {

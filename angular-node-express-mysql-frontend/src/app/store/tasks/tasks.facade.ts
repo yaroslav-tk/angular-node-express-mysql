@@ -9,6 +9,8 @@ import * as TasksSelectors from "./tasks.selectors";
 @Injectable()
 export class TasksStateFacade {
   userTasks$: Observable<Task[]> = this.store.pipe(select(TasksSelectors.getUserTasksSelector));
+  userTodoTasks$: Observable<Task[]> = this.store.pipe(select(TasksSelectors.getUserTodoTasksSelector));
+  userDoneTasks$: Observable<Task[]> = this.store.pipe(select(TasksSelectors.getUserDoneTasksSelector));
   task$: Observable<Task | null> = this.store.pipe(select(TasksSelectors.getTaskSelector));
   isUserTasksLoading$: Observable<boolean> = this.store.pipe(select(TasksSelectors.isUserTasksLoadingSelector));
   isSingleTaskLoading$: Observable<boolean> = this.store.pipe(select(TasksSelectors.isSingleTaskLoadingSelector));
@@ -18,14 +20,6 @@ export class TasksStateFacade {
 
   getUserTasks(): void {
     this.store.dispatch(TasksAction.requestUserTasks())
-  }
-
-  getUserToDoTasks(): void {
-    this.store.dispatch(TasksAction.requestUserToDoTasks())
-  }
-
-  getUserDoneTasks(): void {
-    this.store.dispatch(TasksAction.requestUserDoneTasks());
   }
 
   getSingleTask(id: string) {

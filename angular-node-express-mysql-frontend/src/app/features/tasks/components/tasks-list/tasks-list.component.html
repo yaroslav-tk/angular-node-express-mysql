@@ -7,27 +7,30 @@
 </ng-container>
 
 <ng-template #showTasksList>
-  <ng-container *ngIf="(tasks$ | async)?.length; else emptyList">
-    <div *ngIf="activeTab === 'all'">
-      <div class="tasks-actions">
-        <app-button buttonText="Add" buttonStyles="btn-success" iconName="plus" (click)="goToAddTaskPage()"></app-button>
-      </div>
-      <app-task-card *ngFor="let task of tasks$ | async; trackBy: myTrackingFn" [task]="task"></app-task-card>
+  <div *ngIf="activeTab === 'all'">
+    <div class="tasks-actions">
+      <app-button buttonText="Add" buttonStyles="btn-success" iconName="plus" (click)="goToAddTaskPage()"></app-button>
     </div>
+    <ng-container *ngIf="(allTasks$ | async)?.length; else emptyList">
+      <app-task-card *ngFor="let task of allTasks$ | async; trackBy: myTrackingFn" [task]="task"></app-task-card>
+    </ng-container>
+  </div>
     <div *ngIf="activeTab === 'todo'">
       <div class="tasks-actions">
         <app-button buttonText="Add" buttonStyles="btn-success" iconName="plus" (click)="goToAddTaskPage()"></app-button>
       </div>
-      <app-task-card *ngFor="let task of tasks$ | async; trackBy: myTrackingFn" [task]="task"></app-task-card>
+      <ng-container *ngIf="(todoTasks$ | async)?.length; else emptyList">
+        <app-task-card *ngFor="let task of todoTasks$ | async; trackBy: myTrackingFn" [task]="task"></app-task-card>
+      </ng-container>
     </div>
     <div *ngIf="activeTab === 'done'">
-      <app-task-card *ngFor="let task of tasks$ | async; trackBy: myTrackingFn" [task]="task"></app-task-card>
+      <ng-container *ngIf="(doneTasks$ | async)?.length; else emptyList">
+        <app-task-card *ngFor="let task of doneTasks$ | async; trackBy: myTrackingFn" [task]="task"></app-task-card>
+      </ng-container>
     </div>
-  </ng-container>
   <ng-template #emptyList>
     <div class="bg-white p-2">
       <span>Your tasks list is empty.</span>
-      <app-button buttonText="Add Task" buttonStyles="btn-success" iconName="plus" (click)="goToAddTaskPage()"></app-button>
     </div>
   </ng-template>
 </ng-template>

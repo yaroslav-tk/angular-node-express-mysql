@@ -6,14 +6,6 @@ export enum TasksActions {
   requestUserTasksSuccess = '[Tasks]  request User Tasks Success',
   requestUserTasksFail = '[Tasks]  request User Tasks Fail',
 
-  requestUserToDoTasks = '[Tasks]  request User To Do Tasks',
-  requestUserToDoTasksSuccess = '[Tasks]  request User To Do Tasks Success',
-  requestUserToDoTasksFail = '[Tasks]  request User To Do Tasks Fail',
-
-  requestUserDoneTasks = '[Tasks]  request User Done Tasks',
-  requestUserDoneTasksSuccess = '[Tasks]  request User Done Tasks Success',
-  requestUserDoneTasksFail = '[Tasks]  request User Done Tasks Fail',
-
   requestSingleTask = '[Tasks]  request SingleTask',
   requestSingleTaskSuccess = '[Tasks]  request SingleTask Success',
   requestSingleTaskFail = '[Tasks]  request SingleTask Fail',
@@ -46,34 +38,6 @@ export const requestUserTasksSuccess = createAction(
 
 export const requestUserTasksFail = createAction(
   TasksActions.requestUserTasksFail,
-  props<{ error: string }>()
-);
-
-export const requestUserToDoTasks = createAction(
-  TasksActions.requestUserToDoTasks
-);
-
-export const requestUserToDoTasksSuccess = createAction(
-  TasksActions.requestUserToDoTasksSuccess,
-  props<{ tasks: Task[] }>()
-);
-
-export const requestUserToDoTasksFail = createAction(
-  TasksActions.requestUserToDoTasksFail,
-  props<{ error: string }>()
-);
-
-export const requestUserDoneTasks = createAction(
-  TasksActions.requestUserDoneTasks
-);
-
-export const requestUserDoneTasksSuccess = createAction(
-  TasksActions.requestUserDoneTasksSuccess,
-  props<{ tasks: Task[] }>()
-);
-
-export const requestUserDoneTasksFail = createAction(
-  TasksActions.requestUserDoneTasksFail,
   props<{ error: string }>()
 );
 

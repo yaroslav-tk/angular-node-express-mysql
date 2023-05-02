@@ -4,6 +4,8 @@ import * as TasksActions from './tasks.actions';
 
 export interface TasksState {
   userTasks: Task[],
+  userTodoTasks: Task[],
+  userDoneTasks: Task[],
   task: Task | null,
   isUserTasksLoading: boolean,
   isSingleTaskLoading: boolean,
@@ -12,6 +14,8 @@ export interface TasksState {
 
 export const initialState: TasksState = {
   userTasks: [],
+  userTodoTasks: [],
+  userDoneTasks: [],
   task: null,
   isUserTasksLoading: false,
   isSingleTaskLoading: false,
@@ -29,44 +33,12 @@ export const tasksReducer = createReducer(
   on(TasksActions.requestUserTasksSuccess, (state, { tasks }) => ({
     ...state,
     isUserTasksLoading: false,
-    userTasks: tasks
+    userTasks: tasks,
+    userTodoTasks: tasks.filter(task => task.done ? null : task),
+    userDoneTasks: tasks.filter(task => task.done ? task: null)
   })),
 
   on(TasksActions.requestUserTasksFail, (state, { error }) => ({
-    ...state,
-    isUserTasksLoading: false,
-    errorMessage: error
-  })),
-
-  on(TasksActions.requestUserToDoTasks, (state) => ({
-    ...state,
-    isUserTasksLoading: true
-  })),
-
-  on(TasksActions.requestUserToDoTasksSuccess, (state, { tasks }) => ({
-    ...state,
-    isUserTasksLoading: false,
-    userTasks: tasks
-  })),
-
-  on(TasksActions.requestUserToDoTasksFail, (state, { error }) => ({
-    ...state,
-    isUserTasksLoading: false,
-    errorMessage: error
-  })),
-
-  on(TasksActions.requestUserDoneTasks, (state) => ({
-    ...state,
-    isUserTasksLoading: true
-  })),
-
-  on(TasksActions.requestUserDoneTasksSuccess, (state, { tasks }) => ({
-    ...state,
-    isUserTasksLoading: false,
-    userTasks: tasks
-  })),
-
-  on(TasksActions.requestUserDoneTasksFail, (state, { error }) => ({
     ...state,
     isUserTasksLoading: false,
     errorMessage: error
