@@ -76,7 +76,9 @@ export const tasksReducer = createReducer(
 
   on(TasksActions.requestDeleteTaskSuccess, (state, { id }) => ({
     ...state,
-    userTasks: state.userTasks.filter(task => task.id !== id)
+    userTasks: state.userTasks.filter(task => task.id !== id),
+    userTodoTasks: state.userTodoTasks.filter(task => task.id !== id),
+    userDoneTasks: state.userDoneTasks.filter(task => task.id !== id)
   })),
 
   on(TasksActions.requestDeleteTaskFail, (state, { error }) => ({
