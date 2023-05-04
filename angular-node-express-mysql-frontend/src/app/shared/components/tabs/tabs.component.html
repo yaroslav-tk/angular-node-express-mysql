@@ -1,5 +1,5 @@
 <ul class="nav nav-tabs">
-  <li class="nav-item" *ngFor="let tab of tabs">
-    <a class="nav-link active">{{tab}}</a>
+  <li class="nav-item" *ngFor="let tab of tabs" >
+    <a class="nav-link" [class.active]="tab.id === activeTab" (click)="changeTab(tab.id)">{{ tab.name }}</a>
   </li>
 </ul>

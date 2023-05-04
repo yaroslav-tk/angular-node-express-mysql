@@ -8,6 +8,16 @@ export const getUserTasksSelector = createSelector(
   (state: TasksState) => state.userTasks
 )
 
+export const getUserTodoTasksSelector = createSelector(
+  tasksFeatureSelector,
+  (state: TasksState) => state.userTodoTasks
+)
+
+export const getUserDoneTasksSelector = createSelector(
+  tasksFeatureSelector,
+  (state: TasksState) => state.userDoneTasks
+)
+
 export const getTaskSelector = createSelector(
   tasksFeatureSelector,
   (state: TasksState) => state.task
