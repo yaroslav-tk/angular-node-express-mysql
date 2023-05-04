@@ -6,9 +6,13 @@ You can use templateDB folder to import default data in MySQL database (Server -
 To install backend follow next steps:
 - npm install from angular-node-express-mysql-backend folder
 - create .env file and connect to your MySQL DB. .env file should contain next fields:
+
     DB_USER=userName
+    
     DB_PASS=userPassword
+    
     DB_NAME=databaseName
+    
     DB_HOST=localhost
 
     JWT_SECRET=secretKey
