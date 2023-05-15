@@ -17,6 +17,15 @@ export class UserEffects {
     )
   ))
 
+  editUser = createEffect(() => this.actions$.pipe(
+    ofType(UserActions.editUser),
+    switchMap(({user}) =>
+    this.userService.editUser(user).pipe(
+      map(user => UserActions.editUserSuccess({ user })),
+      catchError(error => of(UserActions.editUserFail(error.message)))
+    ))
+  ))
+
   constructor(
     private actions$: Actions,
     private userService: UserService

@@ -25,6 +25,11 @@ const routes: Routes = [
     canLoad: [AuthorizedGuard]
   },
   {
+    path: 'settings',
+    loadChildren: () => import('./features/settings/settings.module').then(m => m.SettingsModule),
+    canLoad: [AuthorizedGuard]
+  },
+  {
     path: '**',
     redirectTo: '/tasks'
   }

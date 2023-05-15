@@ -12,6 +12,7 @@ import { UserStateFacade } from 'src/app/store/user/user.facade';
 })
 export class HeaderComponent implements OnInit {
   isAuth$: Observable<boolean>;
+  companyName$: Observable<string | null>;
   userName$: Observable<string | null>;
 
   constructor(
@@ -20,6 +21,7 @@ export class HeaderComponent implements OnInit {
     private router: Router
   ) {
     this.isAuth$ = this.authService.isAuthorized$
+    this.companyName$ = this.userStateFacade.companyName$
     this.userName$ = this.userStateFacade.userName$
   }
 
