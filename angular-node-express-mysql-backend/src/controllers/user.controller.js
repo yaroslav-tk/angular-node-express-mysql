@@ -52,8 +52,22 @@ const user = (request, response) => {
 
 const editUser = async (request, response) => {
   const updatedUser = request.body;
-  console.log(updatedUser);
-  return response.json(updatedUser)
+  try {
+    const { results } = await userService.findUserByEmail(updatedUser.email);
+    const findedUser = results[0];
+    if (findedUser) {
+      const user = {
+        ...findedUser,
+        ...updatedUser
+      }
+      await userService.updateUser(user);
+      return response.json(user)
+    }
+    
+  } catch (error) {
+    console.error(error);
+    return response.status(500).json({ error: 'Something went wrong' });
+  }
 }
 
 module.exports = {

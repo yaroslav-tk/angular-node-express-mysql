@@ -6,12 +6,14 @@ export const userFeatureKey = 'user';
 export interface UserState {
   companyName: string | null,
   userName: string | null,
+  userEmail: string | null,
   errorMessage: string | null
 }
 
 export const initialState: UserState = {
   companyName: null,
   userName: null,
+  userEmail: null,
   errorMessage: null
 };
 
@@ -21,7 +23,8 @@ export const userReducer = createReducer(
   on(UserActions.loadUserSuccess, (state, { user }) => ({
     ...state,
     companyName: user.companyName,
-    userName: user.name
+    userName: user.name,
+    userEmail: user.email
   })),
 
   on(UserActions.loadUserFail, (state, { error }) => ({

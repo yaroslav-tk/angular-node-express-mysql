@@ -10,6 +10,7 @@ import { User } from "src/app/models/user.model";
 export class UserStateFacade {
   companyName$: Observable<string | null> = this.store.pipe(select(UserSelectors.getCompanyNameSelector))
   userName$: Observable<string | null> = this.store.pipe(select(UserSelectors.getUserNameSelector))
+  userEmail$: Observable<string | null> = this.store.pipe(select(UserSelectors.getUserEmail))
 
   constructor(private store: Store) {}
 

@@ -15,7 +15,6 @@ export class UserService {
   }
 
   editUser(user: User): Observable<User> {
-    console.log(user);
-    return this.http.put<User>('/api/user/edit/', user)
+    return this.http.put<User>('/api/user/edit', user)
   }
 }

@@ -12,3 +12,8 @@ export const getUserNameSelector = createSelector(
   userFeatureSelector,
   (state: UserState) => state.userName
 )
+
+export const getUserEmail = createSelector(
+  userFeatureSelector,
+  (state: UserState) => state.userEmail
+)

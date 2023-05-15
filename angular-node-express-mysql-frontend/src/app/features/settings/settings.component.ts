@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { UserStateFacade } from 'src/app/store/user/user.facade';
 
@@ -7,24 +7,29 @@ import { UserStateFacade } from 'src/app/store/user/user.facade';
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.scss']
 })
-export class SettingsComponent {
+export class SettingsComponent implements OnInit{
   @ViewChild('settingsForm') settingsForm!: NgForm
 
   settings = {
     companyName: ''
   }
 
+  userEmail: string | null = null;
+
   constructor(private userStateFacade: UserStateFacade) {
+  }
+
+  ngOnInit(): void {
     this.userStateFacade.companyName$.subscribe(companyName =>
       companyName ? this.settings.companyName = companyName : this.settings.companyName
+    )
+
+    this.userStateFacade.userEmail$.subscribe(email =>
+      email ? this.userEmail = email : null
     )
   }
 
   onSubmit() {
-    console.log(this.settingsForm.value)
-    // const user = {
-    //   companyName: this.settingsForm.value.companyName
-    // }
-    this.userStateFacade.editUser({...this.settingsForm.value})
+    this.userStateFacade.editUser({...this.settingsForm.value, email: this.userEmail })
   }
 }
