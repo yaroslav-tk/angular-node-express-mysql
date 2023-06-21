@@ -17,3 +17,8 @@ export const getUserEmail = createSelector(
   userFeatureSelector,
   (state: UserState) => state.userEmail
 )
+
+export const getCompanyUsersSelector = createSelector(
+  userFeatureSelector,
+  (state: UserState) => state.companyUsers
+)

@@ -1,12 +1,11 @@
-<form #settingsForm="ngForm" (ngSubmit)="onSubmit()">
-  <div class="mb-3">
-    <label for="companyName" class="form-label">Company name</label>
-    <input type="text"
-           class="form-control"
-           id="companyName"
-           name="companyName"
-           [(ngModel)]="settings.companyName"
-           #companyName="ngModel">
-  </div>
-  <app-button buttonStyles="btn-success" buttonText="Save"></app-button>
-</form>
+<app-tabs [tabs]="tabs" [activeTab]="activeTab" (onTabChange)="changeTab($event)"></app-tabs>
+
+<div *ngIf="activeTab === 'general'">
+  <app-settings-general></app-settings-general>
+</div>
+
+<div *ngIf="activeTab === 'users'">
+  <app-settings-users></app-settings-users>
+</div>
+
+
