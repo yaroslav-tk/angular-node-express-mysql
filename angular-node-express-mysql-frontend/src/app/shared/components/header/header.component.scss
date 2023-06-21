@@ -1,1 +1,23 @@
+@import '../../../styles/variables/colors.scss';
+@import '../../../styles/variables/breakpoints.scss';
 
+.page-header {
+  height: 50px;
+  max-height: 50px;
+  background-color: $background-dark;
+}
+
+.profile {
+  font-size: 0;
+}
+
+/* Desktop styles */
+@media (min-width: $desktop-min-width) {
+  .main-nav-toggle-button {
+    display: none;
+  }
+
+  .profile {
+    font-size: 1rem;
+  }
+}

@@ -1,9 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
 @import './app/styles/variables/colors.scss';
-
-input,
-textarea {
-  &.ng-touched.ng-invalid {
-    border-color: $color-red;
-  }
-}
+@import './app/styles/variables/breakpoints.scss';
+@import './app/styles/general.scss';
