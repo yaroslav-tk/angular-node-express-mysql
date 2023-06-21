@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -11,7 +11,9 @@ import { UserStateFacade } from 'src/app/store/user/user.facade';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  @Output() toggleMenu = new EventEmitter<void>();
   isAuth$: Observable<boolean>;
+  companyName$: Observable<string | null>;
   userName$: Observable<string | null>;
 
   constructor(
@@ -20,6 +22,7 @@ export class HeaderComponent implements OnInit {
     private router: Router
   ) {
     this.isAuth$ = this.authService.isAuthorized$
+    this.companyName$ = this.userStateFacade.companyName$
     this.userName$ = this.userStateFacade.userName$
   }
 

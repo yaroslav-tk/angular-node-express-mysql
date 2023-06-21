@@ -1,4 +1,4 @@
-const userRoutes = require('./tasks');
+const userRoutes = require('./user');
 const tasksRoutes = require('./tasks');
 
 

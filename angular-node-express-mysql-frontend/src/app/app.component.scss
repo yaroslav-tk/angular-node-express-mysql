@@ -1,7 +1,9 @@
+@import './styles/variables/breakpoints.scss';
+
 .wrapper {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .page-main {
@@ -10,14 +12,13 @@
 }
 
 .page-nav {
-  width: 180px;
+  flex: 0 0 0;
+  max-width: 0;
+  position: relative;
 }
 
 .page-content {
-  flex: 1;
-}
-
-.page-nav, .page-content {
+  flex: 1 0 200px;
   padding: 0.5rem;
 }
 
@@ -29,4 +30,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+/* Desktop styles */
+@media (min-width: $desktop-min-width) {
+  .page-nav {
+    flex: 0 0 auto;
+    max-width: 175px;
+    position: relative;
+  }
 }

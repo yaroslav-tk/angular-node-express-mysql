@@ -13,4 +13,8 @@ export class UserService {
   getUser(): Observable<User> {
     return this.http.get<User>('/api/user/me')
   }
+
+  editUser(user: User): Observable<User> {
+    return this.http.put<User>('/api/user/edit', user)
+  }
 }

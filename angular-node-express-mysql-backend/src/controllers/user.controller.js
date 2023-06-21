@@ -21,13 +21,19 @@ const login = async (request, response) => {
   
   try {
     const { results } = await userService.findUserByEmail(email);
-    if (results.length) {
-      const hashedPassword = results[0].password;
+    const findedUser = results[0];
+
+    if (findedUser) {
+      const { results } = await userService.findCompanyById(findedUser.company_id);
+      const findedCompany = results[0];
+      const hashedPassword = findedUser.password;
       const match = await bcrypt.compare(password, hashedPassword);
+
       if (match) {
         const user = {
-          name: results[0].username,
-          email: results[0].email,
+          companyName: findedCompany?.company_name,
+          name: findedUser.username,
+          email: findedUser.email,
         };
         const token = await generateToken(user);
         return response.status(200).send({user, token});
@@ -44,8 +50,29 @@ const user = (request, response) => {
   response.json(request.user)
 };
 
+const editUser = async (request, response) => {
+  const updatedUser = request.body;
+  try {
+    const { results } = await userService.findUserByEmail(updatedUser.email);
+    const findedUser = results[0];
+    if (findedUser) {
+      const user = {
+        ...findedUser,
+        ...updatedUser
+      }
+      await userService.updateUser(user);
+      return response.json(user)
+    }
+    
+  } catch (error) {
+    console.error(error);
+    return response.status(500).json({ error: 'Something went wrong' });
+  }
+}
+
 module.exports = {
   register,
   login,
-  user
+  user,
+  editUser
 }

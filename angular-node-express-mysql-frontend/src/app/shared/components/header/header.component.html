@@ -1,19 +1,44 @@
-<header class="p-2 d-flex justify-content-between align-items-center bg-dark text-white">
-  <a routerLink="/">Company name</a>
-  <div *ngIf="isAuth$ | async">
+<header class="page-header p-2 d-flex justify-content-between align-items-center text-white">
+  <div class="d-flex align-items-center text-white">
+    <app-button
+      class="main-nav-toggle-button"
+      [iconName]="'bars'"
+      [buttonStyles]="'btn-outline-light'"
+      (click)="toggleMenu.emit()"
+    ></app-button>
+    <a class="ms-2" routerLink="/">{{companyName$ | async}}</a>
+  </div>
+
+  <div class="d-flex align-items-center" *ngIf="isAuth$ | async">
+    <span class="profile">
       {{userName$ | async}}
       <app-button
-        [buttonText]="'Logout'"
-        [buttonStyles]="'btn-light'"
-        (click)="logout()"
+        [iconName]="'user'"
+        [buttonStyles]="'btn-outline-light mobile-button'"
       ></app-button>
+    </span>
+    <app-button
+      [buttonText]="'Logout'"
+      [buttonStyles]="'btn-light desktop-button'"
+      (click)="logout()"
+    ></app-button>
+    <app-button
+      [iconName]="'arrow-right-from-bracket'"
+      [buttonStyles]="'btn-outline-light mobile-button'"
+      (click)="logout()"
+    ></app-button>
   </div>
   <div *ngIf="!(isAuth$ | async)">
-      <app-button
-        [buttonText]="'Login'"
-        [buttonStyles]="'btn-light'"
-        (click)="goToLoginPage()"
-      ></app-button>
+    <app-button
+      [buttonText]="'Login'"
+      [buttonStyles]="'btn-light desktop-button'"
+      (click)="goToLoginPage()"
+    ></app-button>
+    <app-button
+      [iconName]="'arrow-right-to-bracket'"
+      [buttonStyles]="'btn-outline-light mobile-button'"
+      (click)="goToLoginPage()"
+    ></app-button>
   </div>
 </header>
 
