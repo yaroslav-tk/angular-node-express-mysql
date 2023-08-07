@@ -1,4 +1,69 @@
-<button class="btn {{buttonStyles}} ms-2">
+<button
+  *ngIf="buttonType === 'basic'"
+  class="{{ buttonStyles }}"
+  mat-button
+  color="{{ buttonColor }}"
+>
+  <fa-icon *ngIf="iconName" [icon]="iconName"></fa-icon>
+  {{ buttonText }}
+</button>
+
+<button
+  *ngIf="buttonType === 'raised'"
+  class="{{ buttonStyles }}"
+  mat-raised-button
+  color="{{ buttonColor }}"
+>
+  <fa-icon *ngIf="iconName" [icon]="iconName"></fa-icon>
+  {{ buttonText }}
+</button>
+
+<button
+  *ngIf="buttonType === 'stroked'"
+  class="{{ buttonStyles }}"
+  mat-stroked-button
+  color="{{ buttonColor }}"
+>
+  <fa-icon *ngIf="iconName" [icon]="iconName"></fa-icon>
+  {{ buttonText }}
+</button>
+
+<button
+  *ngIf="buttonType === 'flat'"
+  class="{{ buttonStyles }}"
+  mat-flat-button
+  color="{{ buttonColor }}"
+>
+  <fa-icon *ngIf="iconName" [icon]="iconName"></fa-icon>
+  {{ buttonText }}
+</button>
+
+<button
+  *ngIf="buttonType === 'icon'"
+  class="{{ buttonStyles }}"
+  mat-icon-button
+  color="{{ buttonColor }}"
+>
+  <fa-icon *ngIf="iconName" [icon]="iconName"></fa-icon>
+  {{ buttonText }}
+</button>
+
+<button
+  *ngIf="buttonType === 'fab'"
+  class="{{ buttonStyles }}"
+  mat-fab
+  color="{{ buttonColor }}"
+>
+  <fa-icon *ngIf="iconName" [icon]="iconName"></fa-icon>
+  {{ buttonText }}
+</button>
+
+<button
+  *ngIf="buttonType === 'mini-fab'"
+  class="{{ buttonStyles }}"
+  mat-mini-fab
+  color="{{ buttonColor }}"
+>
   <fa-icon *ngIf="iconName" [icon]="iconName"></fa-icon>
   {{ buttonText }}
 </button>

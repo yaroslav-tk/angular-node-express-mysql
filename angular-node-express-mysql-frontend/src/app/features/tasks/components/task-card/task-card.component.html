@@ -1,16 +1,30 @@
 <div class="card mb-2">
-  <div class="card-body" [ngClass]="{'done': task.done}">
+  <div class="card-body" [ngClass]="{ done: task.done }">
     <div class="row">
       <div class="col-2 text-align-center">
-        <p class="small">{{task.createdAt | date: 'HH:mm:ss dd.MM.yyyy'}}</p>
+        <p class="small">{{ task.createdAt | date : "HH:mm:ss dd.MM.yyyy" }}</p>
       </div>
       <div class="col-8">
-        <p class="card-text">{{task.description}}</p>
+        <p class="card-text">{{ task.description }}</p>
       </div>
       <div class="col-2 d-flex justify-content-end">
-        <app-button buttonStyles="btn-outline-success p-1 border-0 lh-1" iconName="check" (click)="toogleDoneStatus(task)"></app-button>
-        <app-button buttonStyles="btn-outline-dark p-1 border-0 lh-1" iconName="pencil" (click)="goToEditTaskPage(task.id)"></app-button>
-        <app-button buttonStyles="btn-outline-danger p-1 border-0 lh-1" iconName="trash-can" (click)="deleteBtnHandler(task.id)"></app-button>
+        <button mat-icon-button (click)="toogleDoneStatus(task)">
+          <mat-icon class="green-icon">done</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          color="primary"
+          (click)="goToEditTaskPage(task.id)"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          color="warn"
+          (click)="deleteBtnHandler(task.id)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
       </div>
     </div>
   </div>

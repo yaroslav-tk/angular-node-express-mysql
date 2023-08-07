@@ -2,14 +2,14 @@
 
 <ng-container *ngIf="isTasksLoading$ | async; else showTasksList">
   <div class="bg-white p-2">
-    <span>Loading...</span>
+    <span>Завантаження...</span>
   </div>
 </ng-container>
 
 <ng-template #showTasksList>
   <div *ngIf="activeTab === 'all'">
     <div class="actions-panel">
-      <app-button buttonText="Add" buttonStyles="btn-success" iconName="plus" (click)="goToAddTaskPage()"></app-button>
+      <app-button buttonText="Створити" buttonStyles="green-raised-button" iconName="plus" (click)="goToAddTaskPage()"></app-button>
     </div>
     <ng-container *ngIf="(allTasks$ | async)?.length; else emptyList">
       <app-task-card *ngFor="let task of allTasks$ | async; trackBy: myTrackingFn" [task]="task"></app-task-card>
@@ -17,7 +17,7 @@
   </div>
     <div *ngIf="activeTab === 'todo'">
       <div class="actions-panel">
-        <app-button buttonText="Add" buttonStyles="btn-success" iconName="plus" (click)="goToAddTaskPage()"></app-button>
+        <app-button buttonText="Створити" buttonStyles="green-raised-button" iconName="plus" (click)="goToAddTaskPage()"></app-button>
       </div>
       <ng-container *ngIf="(todoTasks$ | async)?.length; else emptyList">
         <app-task-card *ngFor="let task of todoTasks$ | async; trackBy: myTrackingFn" [task]="task"></app-task-card>

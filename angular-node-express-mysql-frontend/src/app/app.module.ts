@@ -13,6 +13,7 @@ import { StoreModule } from '@ngrx/store';
 import { reducers, effects } from './store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { EffectsModule } from '@ngrx/effects';
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot(effects),
     StoreDevtoolsModule.instrument(),
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
