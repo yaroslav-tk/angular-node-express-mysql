@@ -16,9 +16,9 @@ export class TasksListComponent implements OnInit {
   doneTasks$: Observable<Task[]>;
   isTasksLoading$: Observable<boolean>;
   tabs: Tab[] = [
-    { name: 'Всі', id: 'all' },
-    { name: 'Зробити', id: 'todo' },
-    { name: 'Виконані', id: 'done' }
+    { name: $localize`All`, id: 'all' },
+    { name: $localize`To do`, id: 'todo' },
+    { name: $localize`Done`, id: 'done' }
   ]
   activeTab: string = 'todo'
 

@@ -2,14 +2,16 @@
 
 <ng-container *ngIf="isTasksLoading$ | async; else showTasksList">
   <div class="bg-white p-2">
-    <span>Завантаження...</span>
+    <span i18n>Loading...</span>
   </div>
 </ng-container>
 
 <ng-template #showTasksList>
   <div *ngIf="activeTab === 'all'">
     <div class="actions-panel">
-      <app-button buttonText="Створити" buttonStyles="green-raised-button" iconName="plus" (click)="goToAddTaskPage()"></app-button>
+      <button i18n mat-raised-button class="green-raised-button" (click)="goToAddTaskPage()">
+        <mat-icon>add</mat-icon>Add
+      </button>
     </div>
     <ng-container *ngIf="(allTasks$ | async)?.length; else emptyList">
       <app-task-card *ngFor="let task of allTasks$ | async; trackBy: myTrackingFn" [task]="task"></app-task-card>
@@ -17,7 +19,9 @@
   </div>
     <div *ngIf="activeTab === 'todo'">
       <div class="actions-panel">
-        <app-button buttonText="Створити" buttonStyles="green-raised-button" iconName="plus" (click)="goToAddTaskPage()"></app-button>
+        <button i18n mat-raised-button class="green-raised-button" (click)="goToAddTaskPage()">
+          <mat-icon>add</mat-icon>Add
+        </button>
       </div>
       <ng-container *ngIf="(todoTasks$ | async)?.length; else emptyList">
         <app-task-card *ngFor="let task of todoTasks$ | async; trackBy: myTrackingFn" [task]="task"></app-task-card>
@@ -30,7 +34,7 @@
     </div>
   <ng-template #emptyList>
     <div class="bg-white p-2">
-      <span>Your tasks list is empty.</span>
+      <span i18n>Your tasks list is empty.</span>
     </div>
   </ng-template>
 </ng-template>

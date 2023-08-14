@@ -3,11 +3,11 @@
     <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
       <div>
         <mat-form-field class="mat-form-field">
-            <mat-label>Опис завдання</mat-label>
+            <mat-label i18n>Description</mat-label>
             <textarea matInput formControlName="description"></textarea>
         </mat-form-field>
       </div>
-      <app-button buttonStyles="green-raised-button" [buttonText]="mode ==='add' ? 'Створити' : 'Зберегти'"></app-button>
+      <app-button buttonStyles="green-raised-button" [buttonText]="mode ==='add' ? 'Add' : 'Save'"></app-button>
     </form>
   </div>
 </div>
