@@ -1,6 +1,6 @@
 <form class="registration-form" #registrationForm="ngForm" (ngSubmit)="onSubmit(registrationForm)">
   <div class="mb-3">
-    <label for="companyName" class="form-label">Company name</label>
+    <label for="companyName" class="form-label" i18n>Company name</label>
     <input type="text"
            class="form-control"
            id="companyName"
@@ -13,7 +13,7 @@
     </div>
   </div>
   <div class="mb-3">
-    <label for="name" class="form-label">Name</label>
+    <label for="name" class="form-label" i18n>User name</label>
     <input type="text"
            class="form-control"
            id="name"
@@ -39,7 +39,7 @@
     </div>
   </div>
   <div class="mb-3">
-    <label for="password" class="form-label">Password</label>
+    <label for="password" class="form-label" i18n>Password</label>
     <input type="password"
            class="form-control"
            id="password"
@@ -51,5 +51,5 @@
   <div class="form-text" *ngIf="userPassword.invalid && (userPassword.dirty || userPassword.touched)">
     <span>{{ getError(userPassword.errors) }}</span>
   </div>
-  <app-button buttonStyles="btn-primary" buttonText="Register"></app-button>
+  <button mat-raised-button color="primary" i18n>Register</button>
 </form>

@@ -16,4 +16,8 @@ export class NavComponent {
       this.menuVisible = !this.menuVisible;
     });
   }
+
+  hideMenu() {
+    this.menuVisible = false;
+  }
 }

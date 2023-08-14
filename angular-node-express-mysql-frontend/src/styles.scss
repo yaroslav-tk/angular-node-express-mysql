@@ -2,3 +2,6 @@
 @import './app/styles/variables/colors.scss';
 @import './app/styles/variables/breakpoints.scss';
 @import './app/styles/general.scss';
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

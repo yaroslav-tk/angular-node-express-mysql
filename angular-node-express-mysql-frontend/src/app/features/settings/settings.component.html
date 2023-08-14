@@ -1,12 +1,13 @@
-<form #settingsForm="ngForm" (ngSubmit)="onSubmit()">
-  <div class="mb-3">
-    <label for="companyName" class="form-label">Company name</label>
-    <input type="text"
-           class="form-control"
-           id="companyName"
-           name="companyName"
-           [(ngModel)]="settings.companyName"
-           #companyName="ngModel">
+<form #settingsForm="ngForm" (ngSubmit)="onSubmit()" class="form">
+  <div>
+    <mat-form-field class="mat-form-field">
+      <mat-label i18n>Company name</mat-label>
+      <input matInput
+            id="companyName"
+            name="companyName"
+            [(ngModel)]="settings.companyName"
+            #companyName="ngModel">
+    </mat-form-field>
   </div>
-  <app-button buttonStyles="btn-success" buttonText="Save"></app-button>
+  <button class="green-raised-button" mat-raised-button i18n>Save</button>
 </form>

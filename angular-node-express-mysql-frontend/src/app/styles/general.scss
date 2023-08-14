@@ -12,7 +12,16 @@ textarea {
 }
 
 .desktop-button {
-  display: none;
+  display: none !important;
+}
+
+.green-raised-button:not(:disabled) {
+  background-color: #008000 !important;
+  color: #ffffff !important;
+}
+
+.green-icon {
+  color: #008000;
 }
 
 /* Tablet styles */
@@ -22,10 +31,10 @@ textarea {
 /* Desktop styles */
 @media (min-width: $desktop-min-width) {
   .mobile-button {
-    display: none;
+    display: none !important;
   }
 
   .desktop-button {
-    display: block;
+    display: block !important;
   }
 }
