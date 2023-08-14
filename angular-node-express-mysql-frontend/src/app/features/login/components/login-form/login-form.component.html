@@ -13,7 +13,7 @@
     </div>
   </div>
   <div class="mb-3">
-    <label for="password" class="form-label">Пароль</label>
+    <label for="password" class="form-label" i18n>Password</label>
     <input type="password"
            class="form-control"
            id="password"
@@ -25,5 +25,5 @@
   <div *ngIf="userPassword.invalid && (userPassword.dirty || userPassword.touched)">
     <span class="">{{ getError(userPassword.errors) }}</span>
   </div>
-  <button mat-raised-button color="primary">Увійти</button>
+  <button mat-raised-button color="primary" i18n>Login</button>
 </form>

@@ -1,7 +1,7 @@
 <form #settingsForm="ngForm" (ngSubmit)="onSubmit()" class="form">
   <div>
     <mat-form-field class="mat-form-field">
-      <mat-label>Назва організації</mat-label>
+      <mat-label i18n>Company name</mat-label>
       <input matInput
             id="companyName"
             name="companyName"
@@ -9,5 +9,5 @@
             #companyName="ngModel">
     </mat-form-field>
   </div>
-  <app-button buttonStyles="green-raised-button" buttonText="Зберегти"></app-button>
+  <button class="green-raised-button" mat-raised-button i18n>Save</button>
 </form>
