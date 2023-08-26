@@ -8,7 +8,7 @@
            [(ngModel)]="user.companyName"
            #companyName="ngModel"
            required>
-    <div *ngIf="companyName.invalid && (companyName.dirty || companyName.touched)">
+    <div class="form-text" *ngIf="companyName.invalid && (companyName.dirty || companyName.touched)">
       <span class="">{{ getError(companyName.errors) }}</span>
     </div>
   </div>
@@ -20,8 +20,9 @@
            name="name"
            [(ngModel)]="user.name"
            #userName="ngModel"
+           minlength="2"
            required>
-    <div *ngIf="userName.invalid && (userName.dirty || userName.touched)">
+    <div class="form-text" *ngIf="userName.invalid && (userName.dirty || userName.touched)">
       <span class="">{{ getError(userName.errors) }}</span>
     </div>
   </div>
@@ -46,10 +47,11 @@
            name="password"
            [(ngModel)]="user.password"
            #userPassword="ngModel"
+           minlength="6"
            required>
-  </div>
-  <div class="form-text" *ngIf="userPassword.invalid && (userPassword.dirty || userPassword.touched)">
-    <span>{{ getError(userPassword.errors) }}</span>
+    <div class="form-text" *ngIf="userPassword.invalid && (userPassword.dirty || userPassword.touched)">
+      <span>{{ getError(userPassword.errors) }}</span>
+    </div>
   </div>
   <button mat-raised-button color="primary" i18n>Register</button>
 </form>
