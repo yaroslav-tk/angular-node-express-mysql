@@ -9,8 +9,10 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./button.component.scss']
 })
 export class ButtonComponent {
+  @Input() buttonType = 'basic';
   @Input() buttonText = '';
   @Input() buttonStyles = '';
+  @Input() buttonColor = 'primary';
   @Input() iconName?: IconName;
 
   constructor(library: FaIconLibrary) {

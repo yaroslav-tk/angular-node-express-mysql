@@ -5,6 +5,7 @@
   z-index: 10;
   top: 0;
   left: 0;
+  max-width: 150px;
   margin: 0;
   padding: 0.5rem;
   display: flex;
@@ -16,10 +17,14 @@
   list-style: none;
   overflow-y: hidden;
   overflow-x: hidden;
-  transform: translate(-100px);
+  transform: translate(-150px);
 
   &.nav-visible {
     transform: translate(0);
+  }
+
+  .nav-link {
+    width: 100%;
   }
 }
 

@@ -7,6 +7,10 @@ import { NavComponent } from './components/nav/nav.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { TabsComponent } from './components/tabs/tabs.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 const components = [
   HeaderComponent,
@@ -20,7 +24,11 @@ const modules = [
   RouterModule,
   FontAwesomeModule,
   FormsModule,
-  ReactiveFormsModule
+  ReactiveFormsModule,
+  MatButtonModule,
+  MatInputModule,
+  MatIconModule,
+  MatSidenavModule,
 ]
 
 @NgModule({

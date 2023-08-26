@@ -1,11 +1,13 @@
-<app-tabs [tabs]="tabs" [activeTab]="activeTab" (onTabChange)="changeTab($event)"></app-tabs>
-
-<div *ngIf="activeTab === 'general'">
-  <app-settings-general></app-settings-general>
-</div>
-
-<div *ngIf="activeTab === 'users'">
-  <app-settings-users></app-settings-users>
-</div>
-
-
+<form #settingsForm="ngForm" (ngSubmit)="onSubmit()" class="form">
+  <div>
+    <mat-form-field class="mat-form-field">
+      <mat-label i18n>Company name</mat-label>
+      <input matInput
+            id="companyName"
+            name="companyName"
+            [(ngModel)]="settings.companyName"
+            #companyName="ngModel">
+    </mat-form-field>
+  </div>
+  <button class="green-raised-button" mat-raised-button i18n>Save</button>
+</form>

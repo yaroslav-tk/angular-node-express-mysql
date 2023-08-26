@@ -1,17 +1,13 @@
 <div class="me-3">
   <div class="row mb-2">
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <div class="mb-3">
-        <label for="description" class="form-label">Description</label>
-        <textarea name="description"
-                  class="form-control"
-                  id="description"
-                  rows="4"
-                  cols="5"
-                  formControlName="description">
-        </textarea>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
+      <div>
+        <mat-form-field class="mat-form-field">
+            <mat-label i18n>Description</mat-label>
+            <textarea matInput formControlName="description"></textarea>
+        </mat-form-field>
       </div>
-      <app-button buttonStyles="btn-success" [buttonText]="mode ==='add' ? 'Add' : 'Save'"></app-button>
+      <app-button buttonStyles="green-raised-button" [buttonText]="mode ==='add' ? 'Add' : 'Save'"></app-button>
     </form>
   </div>
 </div>

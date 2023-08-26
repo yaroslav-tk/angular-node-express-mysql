@@ -1,6 +1,6 @@
 <form class="registration-form" #registrationForm="ngForm" (ngSubmit)="onSubmit(registrationForm)">
   <div class="mb-3">
-    <label for="companyName" class="form-label">Company name</label>
+    <label for="companyName" class="form-label" i18n>Company name</label>
     <input type="text"
            class="form-control"
            id="companyName"
@@ -8,20 +8,21 @@
            [(ngModel)]="user.companyName"
            #companyName="ngModel"
            required>
-    <div *ngIf="companyName.invalid && (companyName.dirty || companyName.touched)">
+    <div class="form-text" *ngIf="companyName.invalid && (companyName.dirty || companyName.touched)">
       <span class="">{{ getError(companyName.errors) }}</span>
     </div>
   </div>
   <div class="mb-3">
-    <label for="name" class="form-label">Name</label>
+    <label for="name" class="form-label" i18n>User name</label>
     <input type="text"
            class="form-control"
            id="name"
            name="name"
            [(ngModel)]="user.name"
            #userName="ngModel"
+           minlength="2"
            required>
-    <div *ngIf="userName.invalid && (userName.dirty || userName.touched)">
+    <div class="form-text" *ngIf="userName.invalid && (userName.dirty || userName.touched)">
       <span class="">{{ getError(userName.errors) }}</span>
     </div>
   </div>
@@ -39,17 +40,18 @@
     </div>
   </div>
   <div class="mb-3">
-    <label for="password" class="form-label">Password</label>
+    <label for="password" class="form-label" i18n>Password</label>
     <input type="password"
            class="form-control"
            id="password"
            name="password"
            [(ngModel)]="user.password"
            #userPassword="ngModel"
+           minlength="6"
            required>
+    <div class="form-text" *ngIf="userPassword.invalid && (userPassword.dirty || userPassword.touched)">
+      <span>{{ getError(userPassword.errors) }}</span>
+    </div>
   </div>
-  <div class="form-text" *ngIf="userPassword.invalid && (userPassword.dirty || userPassword.touched)">
-    <span>{{ getError(userPassword.errors) }}</span>
-  </div>
-  <app-button buttonStyles="btn-primary" buttonText="Register"></app-button>
+  <button mat-raised-button color="primary" i18n>Register</button>
 </form>

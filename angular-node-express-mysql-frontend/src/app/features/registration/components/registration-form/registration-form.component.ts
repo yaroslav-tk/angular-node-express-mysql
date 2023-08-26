@@ -19,8 +19,14 @@ export class RegistrationFormComponent {
     private authService: AuthService
   ) {}
 
-  getError({required}: any): string {
-    return required ? 'This field is required' : ''
+  getError({ required, minlength }: any): string {
+    if (required) {
+      return 'This field is required';
+    } else if (minlength) {
+      return `This field should be at least ${minlength.requiredLength} characters`;
+    } else {
+      return 'Enter valid value'
+    }
   }
 
   onSubmit(registrationForm: NgForm) {
