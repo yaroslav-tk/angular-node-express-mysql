@@ -50,6 +50,27 @@ const user = (request, response) => {
   response.json(request.user)
 };
 
+const companyUsers = (request, response) => {
+  response.json([
+    {
+      id: '1',
+      role: 'admin',
+      companyName: 'AvtoTochka',
+      email: 'yaroslav@gmail.com',
+      name: 'Ярослав',
+      password: ''
+    },
+    {
+      id: '2',
+      role: 'user',
+      companyName: 'AvtoTochka',
+      email: 'user@gmail.com',
+      name: 'Продавець',
+      password: ''
+    },
+  ])
+}
+
 const editUser = async (request, response) => {
   const updatedUser = request.body;
   try {
@@ -74,5 +95,6 @@ module.exports = {
   register,
   login,
   user,
+  companyUsers,
   editUser
 }

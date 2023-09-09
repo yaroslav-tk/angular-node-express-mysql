@@ -1,0 +1,30 @@
+<div class="actions-panel">
+  <app-button buttonText="Add new user" buttonStyles="btn-success" iconName="plus"></app-button>
+</div>
+
+<table class="table" id="users_table">
+  <thead>
+  <tr>
+      <th>Active</th>
+      <th>Login</th>
+      <th>Name</th>
+      <th>Role</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of companyUsers$ | async">
+      <td><input type="checkbox" checked=""></td>
+      <td class="user_email">
+        <app-button buttonStyles="btn-outline-dark p-1 border-0 lh-1" iconName="pencil"></app-button>
+        {{ user.email }}
+      </td>
+      <td class="user_name" contenteditable>{{ user.name }}</td>
+      <td class="user_role">
+        <select>
+            <option value="1" selected="">Admin</option>
+            <option value="2">User</option>
+        </select>
+      </td>
+    </tr>
+  </tbody>
+</table>

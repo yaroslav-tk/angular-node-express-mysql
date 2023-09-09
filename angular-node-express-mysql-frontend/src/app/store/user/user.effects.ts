@@ -17,6 +17,16 @@ export class UserEffects {
     )
   ))
 
+  getCompanyUserS = createEffect(() => this.actions$.pipe(
+    ofType(UserActions.loadCompanyUsers),
+    switchMap(() =>
+      this.userService.getCompanyUsers().pipe(
+        map(companyUsers => UserActions.loadCompanyUsersSuccess({ companyUsers })),
+        catchError(error => of(UserActions.loadCompanyUsersFail(error.message)))
+      )
+    )
+  ))
+
   editUser = createEffect(() => this.actions$.pipe(
     ofType(UserActions.editUser),
     switchMap(({user}) =>
