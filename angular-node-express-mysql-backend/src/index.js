@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const db = require('./database');
+const cors = require('cors');
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -15,6 +16,7 @@ const app = express();
 const port = 8080;
 const host = '0.0.0.0';
 
+app.use(cors());
 app.use(express.static(path.join(__dirname, '..', 'dist', 'angular-node-express-mysql-frontend')));
 app.use(bodyParser.json());
 
