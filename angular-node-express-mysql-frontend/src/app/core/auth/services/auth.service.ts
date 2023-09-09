@@ -30,7 +30,7 @@ export class AuthService {
   }
 
   login(credentials: User) {
-    this.http.post('https://sparkly-gaufre-510df5.netlify.app/api/user/login', credentials)
+    this.http.post('/api/user/login', credentials)
       .pipe(
         tap(({token}: any) => {
           this.sessionStorageService.setItem('token', token);
