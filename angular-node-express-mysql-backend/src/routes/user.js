@@ -8,6 +8,7 @@ const { registrationValidationRules, loginValidationRules, validate } = require(
 router.post('/register', registrationValidationRules(), validate, userController.register);
 router.post('/login', loginValidationRules(), validate, userController.login);
 router.put('/edit', userController.editUser);
-router.get('/me', authorizationMiddleware, userController.user)
+router.get('/me', authorizationMiddleware, userController.user);
+router.get('/users', userController.companyUsers)
 
 module.exports = router;

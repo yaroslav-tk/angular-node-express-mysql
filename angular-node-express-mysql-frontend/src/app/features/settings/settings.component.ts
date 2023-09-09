@@ -1,35 +1,20 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { UserStateFacade } from 'src/app/store/user/user.facade';
+import { Tab } from 'src/app/shared/models/tab.model';
 
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.scss']
 })
-export class SettingsComponent implements OnInit{
-  @ViewChild('settingsForm') settingsForm!: NgForm
+export class SettingsComponent {
+  tabs: Tab[] = [
+    { name: 'General', id: 'general' },
+    { name: 'Users', id: 'users' },
+  ];
 
-  settings = {
-    companyName: ''
-  }
+  activeTab: string = 'general';
 
-  userEmail: string | null = null;
-
-  constructor(private userStateFacade: UserStateFacade) {
-  }
-
-  ngOnInit(): void {
-    this.userStateFacade.companyName$.subscribe(companyName =>
-      companyName ? this.settings.companyName = companyName : this.settings.companyName
-    )
-
-    this.userStateFacade.userEmail$.subscribe(email =>
-      email ? this.userEmail = email : null
-    )
-  }
-
-  onSubmit() {
-    this.userStateFacade.editUser({...this.settingsForm.value, email: this.userEmail })
+  changeTab(tabId: string) {
+    this.activeTab = tabId
   }
 }

@@ -11,11 +11,16 @@ export class UserStateFacade {
   companyName$: Observable<string | null> = this.store.pipe(select(UserSelectors.getCompanyNameSelector))
   userName$: Observable<string | null> = this.store.pipe(select(UserSelectors.getUserNameSelector))
   userEmail$: Observable<string | null> = this.store.pipe(select(UserSelectors.getUserEmail))
+  companyUsers$: Observable<User[]> = this.store.pipe(select(UserSelectors.getCompanyUsersSelector))
 
   constructor(private store: Store) {}
 
   loadUser(): void {
     this.store.dispatch(UserActions.loadUser())
+  }
+
+  loadCompanyUsers(): void {
+    this.store.dispatch(UserActions.loadCompanyUsers())
   }
 
   editUser(user: User): void {
