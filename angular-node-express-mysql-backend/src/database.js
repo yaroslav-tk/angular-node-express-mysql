@@ -1,16 +1,19 @@
-const mysql = require('mysql');
+// const mysql = require('mysql');
+const mysql = require('mysql2')
 
 let connection;
 
 const db = {
     connect: () => {
-        connection = mysql.createConnection({
-            host: process.env.DB_HOST,
-            user: process.env.DB_USER,
-            password: process.env.DB_PASS,
-            database: process.env.DB_NAME,
-            socketPath: process.env.DB_SOCKET,
-        });
+        connection = mysql.createConnection(process.env.DATABASE_URL)
+        // connection = mysql.createConnection({
+        //     host: process.env.DB_HOST,
+        //     user: process.env.DB_USER,
+        //     password: process.env.DB_PASS,
+        //     database: process.env.DB_NAME,
+        //     socketPath: process.env.DB_SOCKET,
+        // });
+        console.log('Connected to PlanetScale!')
         connection.connect();
     },
     query: (queryString, escapedValues) =>
