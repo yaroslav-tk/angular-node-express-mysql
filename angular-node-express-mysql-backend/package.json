@@ -10,7 +10,7 @@
     "dev": "nodemon --exec babel-node ./src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "babel ./src --out-dir ./build",
-    "start": "node ./src/index.js"
+    "start": "node ./build/index.js"
   },
   "author": "Yaroslav Tkachenko",
   "license": "ISC",

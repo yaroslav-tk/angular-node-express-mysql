@@ -17,7 +17,7 @@ const port = 8080;
 const host = '0.0.0.0';
 
 app.use(cors());
-app.use(express.static(path.join(__dirname, '..', 'dist', 'angular-node-express-mysql-frontend')));
+app.use(express.static(path.join(__dirname, '..', 'dist')));
 app.use(bodyParser.json());
 
 app.use('/api/user/', user);
