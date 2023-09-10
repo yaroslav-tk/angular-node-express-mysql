@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "engines": {
-    "node": ">=12.0.0"
+    "node": ">=12.0.0 < 15"
   },
   "scripts": {
     "dev": "nodemon --exec babel-node ./src/index.js",
@@ -26,6 +26,7 @@
     "jsonwebtoken": "^9.0.0",
     "mime": "^3.0.0",
     "mysql": "^2.18.1",
+    "mysql2": "^3.6.0",
     "uuid": "^9.0.0"
   },
   "devDependencies": {

@@ -16,8 +16,16 @@ const app = express();
 const port = 8080;
 const host = '0.0.0.0';
 
+// const corsOptions = {
+//   origin: 'https://famous-travesseiro-f2f70b.netlify.app', // Replace with your frontend origin
+//   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+//   credentials: true, // Set to true if you need to allow cookies with CORS
+//   allowedHeaders: 'Content-Type,Authorization',
+// };
+
+// app.use(cors(corsOptions));
 app.use(cors());
-app.use(express.static(path.join(__dirname, '..', 'dist', 'angular-node-express-mysql-frontend')));
+app.use(express.static(path.join(__dirname, '..', 'dist')));
 app.use(bodyParser.json());
 
 app.use('/api/user/', user);
@@ -32,7 +40,7 @@ const angularRoutePaths = [
 
 angularRoutePaths.forEach(route => {
   app.get(route, (req, res) => {
-    const filePath = path.join(__dirname, '..', 'dist', 'angular-node-express-mysql-frontend', 'index.html');
+    const filePath = path.join(__dirname, '..', 'dist', 'en-US', 'index.html');
     res.sendFile(filePath, (err) => {
       if (err) {
         console.error(err);

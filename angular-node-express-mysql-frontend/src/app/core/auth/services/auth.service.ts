@@ -5,12 +5,14 @@ import { SessionStorageService } from './session-storage.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { UserStateFacade } from 'src/app/store/user/user.facade';
+import { environment } from '../../environments/environment';
 
 
 @Injectable()
 export class AuthService {
   private isAuthorized$$ = new BehaviorSubject<boolean>(this.isAuthorized());
   public isAuthorized$ = this.isAuthorized$$.asObservable();
+  private baseURL = environment.production ? environment.baseUrl : '';
 
   constructor(
     private http: HttpClient,
@@ -25,12 +27,12 @@ export class AuthService {
   }
 
   register(credentials: User) {
-    this.http.post<User>('/api/user/register', credentials)
+    this.http.post<User>(`${this.baseURL}/api/user/register`, credentials)
       .subscribe(() => this.router.navigateByUrl('/login'));
   }
 
   login(credentials: User) {
-    this.http.post('https://sparkly-gaufre-510df5.netlify.app/api/user/login', credentials)
+    this.http.post(`${this.baseURL}/api/user/login`, credentials)
       .pipe(
         tap(({token}: any) => {
           this.sessionStorageService.setItem('token', token);

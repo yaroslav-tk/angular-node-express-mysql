@@ -5,9 +5,15 @@
   "projects": {
     "angular-node-express-mysql-frontend": {
       "i18n": {
-        "sourceLocale": "en-US",
+        "sourceLocale": {
+          "code": "en-US",
+          "baseHref": ""
+        },
         "locales": {
-          "uk-UA": "src/locale/messages.uk.xlf"
+          "uk-UA": {
+              "baseHref": "",
+              "translation": "src/locale/messages.uk.xlf"
+          }
         }
       },
       "projectType": "application",
@@ -24,7 +30,7 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "localize": ["en-US"],
-            "outputPath": "dist/angular-node-express-mysql-frontend",
+            "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -46,11 +52,17 @@
           },
           "configurations": {
             "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/app/core/environments/environment.ts",
+                  "with": "src/app/core/environments/environment.prod.ts"
+                }
+              ],
               "budgets": [
                 {
                   "type": "initial",
                   "maximumWarning": "500kb",
-                  "maximumError": "2mb"
+                  "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",
