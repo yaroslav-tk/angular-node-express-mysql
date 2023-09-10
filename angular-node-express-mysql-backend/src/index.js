@@ -28,12 +28,6 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, '..', 'dist')));
 app.use(bodyParser.json());
 
-app.use('/api/user/:locale/', (req, res, next) => {
-  const { locale } = req.params;
-  req.locale = locale; // Передаем локализацию в запрос
-  next();
-});
-
 app.use('/api/user/', user);
 app.use('/api/tasks', authorizationMiddleware, tasks);
 
