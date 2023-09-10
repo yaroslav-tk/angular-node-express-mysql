@@ -5,9 +5,15 @@
   "projects": {
     "angular-node-express-mysql-frontend": {
       "i18n": {
-        "sourceLocale": "en-US",
+        "sourceLocale": {
+          "code": "en-US",
+          "baseHref": ""
+        },
         "locales": {
-          "uk-UA": "src/locale/messages.uk.xlf"
+          "uk-UA": {
+              "baseHref": "",
+              "translation": "src/locale/messages.uk.xlf"
+          }
         }
       },
       "projectType": "application",

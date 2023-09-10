@@ -1,4 +1,4 @@
 export const environment = {
   production: 'true',
-  baseUrl: 'https://sparkly-gaufre-510df5.netlify.app'
+  baseUrl: 'https://angular-node-express-mysql-backend.onrender.com'
 }
