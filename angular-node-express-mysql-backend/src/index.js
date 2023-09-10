@@ -24,7 +24,16 @@ const host = '0.0.0.0';
 // };
 
 // app.use(cors(corsOptions));
+// const corsOptions = {
+//   origin: 'https://famous-travesseiro-f2f70b.netlify.app', // Replace with your frontend origin
+//   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+//   credentials: true, // Set to true if you need to allow cookies with CORS
+//   allowedHeaders: 'Content-Type,Authorization',
+// };
+
+// app.use(cors(corsOptions));
 app.use(cors());
+app.use(express.static(path.join(__dirname, '..', 'dist')));
 app.use(express.static(path.join(__dirname, '..', 'dist')));
 app.use(bodyParser.json());
 
