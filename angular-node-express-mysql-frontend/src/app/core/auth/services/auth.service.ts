@@ -25,12 +25,12 @@ export class AuthService {
   }
 
   register(credentials: User) {
-    this.http.post<User>('https://angular-node-express-mysql-backend.onrender.com/api/user/register', credentials)
+    this.http.post<User>('/api/user/register', credentials)
       .subscribe(() => this.router.navigateByUrl('/login'));
   }
 
   login(credentials: User) {
-    this.http.post('https://angular-node-express-mysql-backend.onrender.com/api/user/login', credentials)
+    this.http.post('/api/user/login', credentials)
       .pipe(
         tap(({token}: any) => {
           this.sessionStorageService.setItem('token', token);
