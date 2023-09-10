@@ -11,7 +11,7 @@ export class UserService {
   ) { }
 
   getUser(): Observable<User> {
-    return this.http.get<User>('/api/user/me')
+    return this.http.get<User>('https://sparkly-gaufre-510df5.netlify.app/api/user/me')
   }
 
   getCompanyUsers(): Observable<User[]> {
