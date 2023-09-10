@@ -2,11 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/models/user.model';
-import { environment } from '../../environments/environment.prod';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class UserService {
-  private baseURL = environment.baseUrl;
+  private baseURL = environment.production ? environment.baseUrl : '';
 
   constructor(
     private http: HttpClient

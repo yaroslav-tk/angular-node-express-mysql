@@ -5,14 +5,14 @@ import { SessionStorageService } from './session-storage.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { UserStateFacade } from 'src/app/store/user/user.facade';
-import { environment } from '../../environments/environment.prod';
+import { environment } from '../../environments/environment';
 
 
 @Injectable()
 export class AuthService {
   private isAuthorized$$ = new BehaviorSubject<boolean>(this.isAuthorized());
   public isAuthorized$ = this.isAuthorized$$.asObservable();
-  private baseURL = environment.baseUrl;
+  private baseURL = environment.production ? environment.baseUrl : '';
 
   constructor(
     private http: HttpClient,

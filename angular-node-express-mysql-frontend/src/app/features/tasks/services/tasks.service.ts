@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Task } from 'src/app/models/task.model';
 import { Observable, map } from 'rxjs';
-import { environment } from '../../../core/environments/environment.prod';
+import { environment } from '../../../core/environments/environment';
 
 
 @Injectable()
 export class TasksService {
-  private baseURL = environment.baseUrl;
+  private baseURL = environment.production ? environment.baseUrl : '';
 
   constructor(private http: HttpClient) { }
 
