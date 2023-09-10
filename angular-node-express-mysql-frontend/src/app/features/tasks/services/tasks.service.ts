@@ -2,34 +2,36 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Task } from 'src/app/models/task.model';
 import { Observable, map } from 'rxjs';
+import { environment } from '../../../core/environments/environment';
 
 
 @Injectable()
 export class TasksService {
+  private baseURL = environment.production ? environment.baseUrl : '';
 
   constructor(private http: HttpClient) { }
 
   getUserTasks(): Observable<Task[]> {
-    return this.http.get<Task[]>('/api/tasks');
+    return this.http.get<Task[]>(`${this.baseURL}/api/tasks`);
   }
 
   getSingleTask(id: string): Observable<Task> {
-    return this.http.get<Task>(`/api/tasks/${id}`)
+    return this.http.get<Task>(`${this.baseURL}/api/tasks/${id}`)
   }
 
   createTask(task: Task): Observable<Task> {
-    return this.http.post<Task>('/api/tasks/add', task);
+    return this.http.post<Task>(`${this.baseURL}/api/tasks/add`, task);
   }
 
   editTask(task: Task): Observable<Task> {
-    return this.http.put<Task>(`/api/tasks/edit/${task.id}`, task);
+    return this.http.put<Task>(`${this.baseURL}/api/tasks/edit/${task.id}`, task);
   }
 
   toogleDoneStatus(task: Task) {
-    return this.http.put<Task>('/api/tasks/toogleDoneStatus', task);
+    return this.http.put<Task>(`${this.baseURL}/api/tasks/toogleDoneStatus`, task);
   }
 
   deleteTask(id: string) {
-    return this.http.delete(`/api/tasks/${id}`);
+    return this.http.delete(`${this.baseURL}/api/tasks/${id}`);
   }
 }
