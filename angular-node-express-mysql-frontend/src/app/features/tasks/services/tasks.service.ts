@@ -10,7 +10,7 @@ export class TasksService {
   constructor(private http: HttpClient) { }
 
   getUserTasks(): Observable<Task[]> {
-    return this.http.get<Task[]>('/api/tasks');
+    return this.http.get<Task[]>('https://angular-node-express-mysql-backend.onrender.com/api/tasks');
   }
 
   getSingleTask(id: string): Observable<Task> {

@@ -25,7 +25,7 @@ export class AuthService {
   }
 
   register(credentials: User) {
-    this.http.post<User>('/api/user/register', credentials)
+    this.http.post<User>('https://angular-node-express-mysql-backend.onrender.com/api/user/register', credentials)
       .subscribe(() => this.router.navigateByUrl('/login'));
   }
 
