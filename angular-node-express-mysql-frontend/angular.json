@@ -11,8 +11,8 @@
         },
         "locales": {
           "uk-UA": {
-              "baseHref": "",
-              "translation": "src/locale/messages.uk.xlf"
+              "baseHref": "ua",
+              "translation": "src/locale/messages.ua.xlf"
           }
         }
       },
@@ -29,7 +29,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "localize": ["en-US"],
+            "localize": true,
             "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -51,6 +51,12 @@
             "scripts": []
           },
           "configurations": {
+            "en": {
+              "localize": ["en-US"]
+            },
+            "ua": {
+              "localize": ["uk-UA"]
+            },
             "production": {
               "fileReplacements": [
                 {
@@ -86,6 +92,12 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
+            "en": {
+              "browserTarget": "angular-node-express-mysql-frontend:build:development,en"
+            },
+            "ua": {
+              "browserTarget": "angular-node-express-mysql-frontend:build:development,ua"
+            },
             "production": {
               "browserTarget": "angular-node-express-mysql-frontend:build:production"
             },
@@ -98,7 +110,8 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-node-express-mysql-frontend:build"
+            "browserTarget": "angular-node-express-mysql-frontend:build",
+            "outputPath": "src/locale"
           }
         },
         "test": {
