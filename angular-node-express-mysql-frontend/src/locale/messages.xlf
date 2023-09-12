@@ -251,7 +251,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/registration/components/registration-form/registration-form.component.html</context>
-          <context context-type="linenumber">42</context>
+          <context context-type="linenumber">43</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2454050363478003966" datatype="html">
@@ -275,7 +275,7 @@
           <context context-type="linenumber">3</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/settings/settings.component.html</context>
+          <context context-type="sourcefile">src/app/features/settings/components/settings-general/settings-general.component.html</context>
           <context context-type="linenumber">4</context>
         </context-group>
       </trans-unit>
@@ -290,7 +290,7 @@
         <source>Register</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/registration/components/registration-form/registration-form.component.html</context>
-          <context context-type="linenumber">54</context>
+          <context context-type="linenumber">56</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8263930760290425467" datatype="html">
@@ -303,7 +303,7 @@
       <trans-unit id="3768927257183755959" datatype="html">
         <source>Save</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/settings/settings.component.html</context>
+          <context context-type="sourcefile">src/app/features/settings/components/settings-general/settings-general.component.html</context>
           <context context-type="linenumber">12</context>
         </context-group>
       </trans-unit>
