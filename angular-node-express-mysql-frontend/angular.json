@@ -11,7 +11,7 @@
         },
         "locales": {
           "uk-UA": {
-              "baseHref": "ua",
+              "baseHref": "",
               "translation": "src/locale/messages.ua.xlf"
           }
         }
